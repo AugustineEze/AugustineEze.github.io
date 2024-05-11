@@ -59,7 +59,7 @@ main.dash-main{
     overflow-y: auto;
 }
 div.main{
-    
+    width: 100%;
     border: 2px solid red;
     background-color: orange;
 }
