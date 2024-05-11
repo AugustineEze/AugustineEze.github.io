@@ -55,6 +55,13 @@ header h1{
 }
 main.dash-main{
     height: 100%;
+    border: 3px solid blue;
+}
+div.main{
+    height: 100%;
+    overflow-y:visible;
+    border: 2px solid red;
+    background-color: orange;
 }
 nav{
     height: 100%;
@@ -160,12 +167,14 @@ progress{
     position: relative;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .days-bar-con p{
     text-align: center;
     color: rgb(0, 0, 0);
     position: absolute;
     bottom: 0;
+    z-index: 1;
 }
 .earn-but{
     background-color: #008000;
@@ -392,7 +401,61 @@ td{
     width: 25px;
     margin: 0;
 }
+.loading-effect-p{
+    position: absolute;
+    background-color: #ff00002c;
+    width: 100%;
+    height: 100%;
+}
+.loading-effect-con{
+    height: 100%;
+    width: 50%;
+    position: relative;
+    overflow: hidden;
+}
+/* .loading-effect{
+    width: 100%;
+    height: 100%;
 
+    background: linear-gradient(to right, green, green, #30a800, #30a800, green);
+
+    background-size: 50% 100%;
+    animation: loadingIllusion 2s linear infinite;
+}
+
+@keyframes loadingIllusion {
+    0%{
+        background-position: -200% 0%;
+    }
+    100%{
+        background-position: 200% 0;
+    }
+} */
+.loading-effect{
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(to right, green, green, #30a800, #30a800, green);
+
+    background-size: 380px;
+    animation: loadingIllusion 1.5s linear infinite;
+}
+
+@keyframes loadingIllusion {
+    0%{
+        background-position: 200% 0%;
+    }
+    100%{
+        background-position: -200% 0;
+    }
+}
+
+
+
+
+
+
+/*Responsive starts here*/
 
 @media only screen and (max-width: 700px)
 {
@@ -465,9 +528,6 @@ td{
 .top-navigation {
     background-color: rgb(1 93 0);
 }
-
-
-
 
 @media only screen and (max-width: 350px)
 {
