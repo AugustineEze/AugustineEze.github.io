@@ -2,6 +2,8 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    position: fixed;
     /* justify-content: space-between; */
 }
 .flux-wrapper{
@@ -55,12 +57,12 @@ header h1{
 }
 main.dash-main{
     flex-grow: 1;
-    border: 3px solid blue;
+    border: 6px solid blue;
     overflow-y: auto;
 }
 div.main{
     height: 100%;
-    border: 2px solid red;
+    border: 6px solid red;
     background-color: orange;
 }
 nav{
