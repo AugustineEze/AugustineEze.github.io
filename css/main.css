@@ -54,7 +54,7 @@ header h1{
     font-size: x-large;
 }
 main.dash-main{
-    height: 100%;
+    height: auto;
     border: 3px solid blue;
 }
 div.main{
