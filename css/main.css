@@ -58,7 +58,7 @@ main.dash-main{
     border: 3px solid blue;
 }
 div.main{
-    height: 100%;
+    height: 80%;
     overflow-y:visible;
     border: 2px solid red;
     background-color: orange;
