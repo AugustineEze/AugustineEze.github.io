@@ -2,7 +2,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 .flux-wrapper{
     /* position: relative; */
@@ -56,10 +56,10 @@ header h1{
 main.dash-main{
     flex-grow: 1;
     border: 3px solid blue;
+    overflow-y: auto;
 }
 div.main{
-    height: 100%;
-    overflow-y:visible;
+    
     border: 2px solid red;
     background-color: orange;
 }
