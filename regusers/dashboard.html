@@ -16,18 +16,12 @@
         <header>
             <a class="mobile-only-icon" href="#"><img src="/assets/icon/logo.svg" alt=""></a>
             <h1 class="mobile-only-icon">X cash flux</h1>
-            <!-- <div onclick="openMenu()">
-                <img class="mobile-only-icon" src="/assets/icon/pie.png" alt="">
-            </div> -->
             <div class="links-navs-header">
                 <div class="top-navigation">
                     <a class="head-nav-li" href="./profile.html">Profile</a>
                     <a class="head-nav-li" href="/index.html">Home</a>
                     <a class="head-nav-li" href="/html/about.html">About Us</a>
                     <a class="head-nav-li" href="/html/team.html">Our Team</a>
-                    <!-- <a class="head-nav-li active-nav-li" href="./dashboard.html">Dashboard</a>
-                    <a class="head-nav-li" href="./flux-crew.html">Flux Crew</a>
-                    <a class="head-nav-li" href="./personal-info.html">Personal Info</a> -->
                 </div>
         
                 <div id="nav-menu" class="pie-container" onclick="openCloseNav()">
@@ -39,66 +33,82 @@
         </header>
     
         <main class="dash-main" onclick="closeNav()">
-            <section class="dash-top-bar-con">
-                <div class="cur-bal">
-                   <p>current balance</p>
-                    <p><span>&#8358;</span>3,000</p>
-                </div>
-
-                <div class="rate-info">
-                    <p>
-                        <span>RATE: </span>
-                        <span>&#8358;312.5</span>
-                    </p>
-                    <p>
-                        <span>FLUX CREW: </span>
-                        <span>&#8358;55.4</span> <span>(0)</span>
-                    </p>
-                    <p>
-                        <span>TOTAL: </span>
-                        <span>&#8358;312.5</span>
-                    </p>
-                </div>
-
-                <div class="days-bar-con">
-                    <progress value="0.5">
-                    </progress>
-                    <p>Daily limit</p>
-                </div>
-
-            </section>
-    
-            <section class="earn-con">
-                <a href="#" class="earn-but" id="earn-button">
-                    <h1>EARN</h1>
-                </a>
-                <a href="#" class="earn-but hide" id="earning-but">
-                    <div class="earning-timer-con">
-                        <span id="earning-min">59</span>
-                        <span>:</span>
-                        <span id="earning-sec">59</span>
+            <div class="main">
+                <section class="dash-top-bar-con">
+                    <div class="cur-bal">
+                       <p>current balance</p>
+                        <p><span>&#8358;</span>3,000</p>
                     </div>
-                    <P class="earning-load-text">EARNING<span></span></P>
-                    <h1><span>&#8358;</span>100</h1>
-                    <P class="earning-load-text">EARNING<span></span></P>
-                </a>
-                <a href="#" class="earn-but hide" id="clain-but">
-                    <h1>CLAIM!!</h1>
-                    <P>&#8358;4,000</P>
-                </a>
-            </section>
     
-            <section class="dash-bot">
-                <div class="motiv-con">
-                    <p>
-                        <q>this the qoute of the man that i made at that time of the work but forget am just writing random words</q>
-
-                    </p>
-                    <p class="quote-author">~David Mike~</p>
-                </div>
+                    <div class="rate-info">
+                        <p>
+                            <span>RATE: </span>
+                            <span>&#8358;312.5</span>
+                        </p>
+                        <p>
+                            <span>FLUX CREW: </span>
+                            <span>&#8358;55.4</span> <span>(0)</span>
+                        </p>
+                        <p>
+                            <span>TOTAL: </span>
+                            <span>&#8358;312.5</span>
+                        </p>
+                    </div>
     
-                <a href="#" class="ref-link">copy referer link</a>
-            </section>
+                    <div class="days-bar-con">
+                        <progress value="0.5">
+                        </progress>
+                        <p>Daily limit</p>
+                        <div class="loading-effect-p">
+                            <div class="loading-effect-con">
+                                <div class="loading-effect">
+                                    
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+    
+                </section>
+        
+                <section class="earn-con">
+                    <a href="#" class="earn-but" id="earn-button">
+                        <h1>EARN</h1>
+                    </a>
+                    <a href="#" class="earn-but hide" id="activate-but" onclick="countDownInterval(59,59)">
+                        <h1>ACTIVE</h1>
+                    </a>
+                    <a href="#" class="earn-but hide" id="earning-but">
+                        <div class="earning-timer-con">
+                            <span id="earning-min">59</span>
+                            <span>:</span>
+                            <span id="earning-sec">59</span>
+                        </div>
+                        <P class="earning-load-text">EARNING<span></span></P>
+                        <h1><span>&#8358;</span>100</h1>
+                        <P class="earning-load-text">EARNING<span></span></P>
+                    </a>
+                    <a href="#" class="earn-but hide" id="clain-but">
+                        <h1>CLAIM!!</h1>
+                        <P>&#8358;4,000</P>
+                    </a>
+                </section>
+        
+                <section class="dash-bot">
+                    <div class="motiv-con">
+                        <p>
+                            <q>this the qoute of the man that i made at that time of the work but forget am just writing random words</q>
+    
+                        </p>
+                        <p class="quote-author">~David Mike~</p>
+                    </div>
+        
+                    <!-- <a href="#" id="referral-code" onclick="copyToClipboard(this)" class="ref-link">copy referer link</a> -->
+                    <input style="display: none;" type="text" value="UserID" id="referral-Code-Input">
+                    <button id="referral-code" onclick="copyToClipboard()" class="ref-link">Copy referral link</button>
+                </section>
+            </div>
+            
         </main>
     
         <footer onclick="closeNav()">
@@ -130,63 +140,39 @@
                     </div>
                     
                 </a>
-                <ul class="nav-li fullscreen-only" id="nav-li">
-                    <div class="closing-nav-con mobile-only-icon">
-                        <img onclick="closeMenu()" class="closing-nav"src="/assets/icon/close-nav.svg" alt="">
-                    </div>
-                    <div class="nav-three-main-side-con mobile-only">
-                        
-                        <li>
-                            <a href="./dashboard.html" class="main-nav-link-p">
-                                <div class="nav-i-con">
-                                    <img class="logo-dash-nav" src="/assets/icon/logo.svg" alt="">
-                                </div>
-                                <div class="nav-t-con">
-                                    <p>Dash board</p>
-                                </div>
-                            </a>
-                        </li>
 
-                        
-                        <li>
-                            <a href="./flux-crew.html" class="main-nav-link-p">
-                                <div class="nav-i-con">
-                                    <img src="/assets/icon/nav-icon/flux-crew-null.png" alt="">
-                                </div>
-                                <div class="nav-t-con">
-                                    <p>Flux Crew</p>
-                                </div>
-                            </a>
-                        </li>
-
-
-                        <li>
-                            <a href="./personal-info.html" class="main-nav-link-p">
-                                <div class="nav-i-con">
-                                    <img src="/assets/icon/nav-icon/personal-info-null.png" alt="">
-                                </div>
-                                <div class="nav-t-con">
-                                    <p>Personal Info</p>
-                                </div>
-                                
-                            </a>
-                        </li>
-                        
-                    </div>
-                    
+                
+                <ul class="nav-li fullscreen-only" id="nav-li">                
                     <li class="nav-li-a"><a href="profile.html">Profile</a></li>
                     <li class="nav-li-a"><a href="../index.html">Home</a></li>
                     <li class="nav-li-a"><a href="../html/about.html">About Us</a></li>
                     <li class="nav-li-a"><a href="../html/team.html">Our Team</a></li>
-                    <!-- <li class="nav-li-a"><a href="#">privacy Policy</a></li>
-                    <li class="nav-li-a"><a href="#">Terms and Con</a></li>
-                    <li class="nav-li-a"><a href="#">Legal Info</a></li>
-                    <li class="nav-li-a"><a href="#">Cookies Info</a></li> -->
                 </ul>
             </nav>
         </footer>
     </div>
 </body>
+<script>
+    function copyToClipboard() {
+            //const currentUrl = window.location.href;
+            const baseUrl = `${window.location.protocol}//${window.location.hostname}`;
+            const route = "login-html/signup.html";
+
+            console.log(baseUrl+route);
+            // Get the text field
+            var copyText = document.getElementById("referral-Code-Input");
+
+            // Select the text field
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(copyText.value);
+
+            // Alert the copied text
+            alert("Copied the text: " + copyText.value);
+    }
+</script>
 <script>
     const menu = document.querySelector('#nav-li');
     function openMenu()
@@ -228,34 +214,41 @@
 </script>
 <script>
     const earnBut = document.querySelector("#earn-button");
+    const activateBut = document.querySelector("#activate-but");
+    const loadingEffectValue = document.querySelector(".loading-effect-con");
     const earningBut = document.querySelector("#earning-but");
     const claimBut = document.querySelector("#clain-but");
     const earningMin = document.getElementById("earning-min");
     const earnSec = document.getElementById("earning-sec");
-
-    let min = 59;
-    let sec = 60;
+    const allEarnBut = [earnBut, activateBut, earningBut, claimBut];
 
     earnBut.addEventListener('click', () => {
-            earningBut.classList.remove('hide');
-            earnBut.classList.add('hide');
-            claimBut.classList.add("hide");
-        }
-    );
+            activateRightEarnButton(activateBut);
+    });
+
+    activateBut.addEventListener('click', () => {
+        activateRightEarnButton(earningBut);
+    })
 
     earningBut.addEventListener('click', () => {
-        earningBut.classList.add('hide');
-        earnBut.classList.add('hide');
-        claimBut.classList.remove("hide");
+        activateRightEarnButton(claimBut);
     })
 
     claimBut.addEventListener('click', () => {
-        earningBut.classList.add('hide');
-        earnBut.classList.remove('hide');
-        claimBut.classList.add("hide");
+        activateRightEarnButton(earnBut);
     })
+    loadingEffectValue.style.width = "50%";
 
-    const countDownInterval = setInterval(() => {
+    function activateRightEarnButton(activeBut)
+    {
+        for(i = 0; i < allEarnBut.length; i++)
+        {
+            allEarnBut[i].classList.add('hide');
+        }
+        activeBut.classList.remove('hide');
+    }
+
+    /* const countDownInterval = setInterval(() => {
         sec--;
         earnSec.textContent = sec < 10 ? "0" + sec : sec;
 
@@ -270,9 +263,32 @@
             sec = 59;
 
             earnSec.textContent = sec;
-            earningMin.textContent = min > 10 ? "0" + min : min;
+            earningMin.textContent = min < 10 ? "0" + min : min;
         }
-    },1000)
+    },1000) */
+    
+    function countDownInterval(sec, min)
+    {
+        setInterval(() => {
+        sec--;
+        earnSec.textContent = sec < 10 ? "0" + sec : sec;
+        console.log("Started counting...");
+
+        //set min
+        if(sec === 0)
+        {
+            min--;
+            if(min === 0)
+            {
+                min = 59;
+            }
+            sec = 59;
+
+            earnSec.textContent = sec;
+            earningMin.textContent = min < 10 ? "0" + min : min;
+        }
+        },1000)
+    }
 
 
 </script>
