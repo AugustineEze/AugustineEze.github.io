@@ -36,6 +36,12 @@ async function startStreaming() {
             // Publish the local stream
             await client.publish([audioTrack, videoTrack]);
             console.log("Local stream published");
+
+            // Ensure audio is played back locally (optional)
+            const localAudioTrack = audioTrack.getMediaStreamTrack();
+            const audioContext = new AudioContext();
+            const source = audioContext.createMediaStreamSource(new MediaStream([localAudioTrack]));
+            source.connect(audioContext.destination);
         } else {
             console.log("Not broadcasting, viewing as audience");
         }
