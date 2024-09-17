@@ -38,10 +38,10 @@ async function startStreaming() {
             console.log("Local stream published");
 
             // Ensure audio is played back locally (optional)
-            const localAudioTrack = audioTrack.getMediaStreamTrack();
+            /* const localAudioTrack = audioTrack.getMediaStreamTrack();
             const audioContext = new AudioContext();
             const source = audioContext.createMediaStreamSource(new MediaStream([localAudioTrack]));
-            source.connect(audioContext.destination);
+            source.connect(audioContext.destination); */
         } else {
             console.log("Not broadcasting, viewing as audience");
         }
@@ -65,7 +65,34 @@ client.on("user-published", async (user, mediaType) => {
 
         user.videoTrack.play(remoteVideoContainer.id);
     }
+    if (mediaType === "audio") {
+        // Handle remote audio
+        console.error(`Playing audio from user ${user.uid}`);
+        user.audioTrack.play();
+    }
 });
+document.querySelector("#unmute-btn").addEventListener("click", ()=>{
+    client.on("user-published", async (user, mediaType) => {
+        // Subscribe to a remote user's media stream
+        await client.subscribe(user, mediaType);
+    
+        // If the media type is video, play the stream
+        if (mediaType === "video") {
+            const remoteVideoContainer = document.createElement("video");
+            remoteVideoContainer.id = `remote_video_${user.uid}`;
+            remoteVideoContainer.autoplay = true;
+            remoteStreamsContainer.appendChild(remoteVideoContainer);
+    
+            user.videoTrack.play(remoteVideoContainer.id);
+        }
+        if (mediaType === "audio") {
+            // Handle remote audio
+            console.error(`Playing audio from user ${user.uid}`);
+            user.audioTrack.play();
+        }
+    });
+});
+
 
 // Handle when a remote user leaves
 client.on("user-left", (user) => {
