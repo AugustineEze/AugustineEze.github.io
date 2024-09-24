@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en-GB">
 
@@ -10,7 +9,6 @@
     <meta name="format-detection" content="telephone=no" />
     <title>Our Ladys Wailing House</title>
 
-    <!-- <link rel='stylesheet' id='site_styles-css' href='https://renewalcc.com/app/themes/adaptable/style.css?ver=240718-83057' type='text/css' media='all' /> -->
     <link rel='stylesheet' id='site_styles-css' href='./themes/adaptable/css/style.css' type='text/css' media='all' />
 
     <link rel="stylesheet" href="vendor/swiper/swiper-bundle.min.css">
@@ -19,6 +17,7 @@
     <!--I think this script is in charge of getting all the images-->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
     <script src="lib/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/549b092043.js" defer crossorigin="anonymous"></script>
 </head>
 
 <body class="home page-template-default page page-id-185">
@@ -34,10 +33,10 @@
             </h1>
         </a>
 
-        <div class="flex--align-center">
-            <a class="header-live-btn" href="/live-stream/index.html">
+        <div class="flex--align-center live-menu-con">
+            <button class="header-live-btn">
                 Live
-            </a>
+            </button>
             <button id="menu-button" class="menu-toggle flex--align-center" aria-label="Mobile menu toggle">
                 <span class="menu-button"></span>
                 <span class="menu-text">menu</span>
@@ -50,7 +49,7 @@
 <main>
 
     <div class="banner-slider-container">
-        <div class="banner-slider owl-carousel">
+        <!-- <div class="banner-slider owl-carousel">
                             
             <div class="banner-slider--item flex" data-id="0">
                 <div class='inline-image banner-slider--bk-image owl-lazy' data-src="/assets/image/slide-images/father-kneeling-front-of-the-alter.jpg"></div>
@@ -120,7 +119,74 @@
                 </span>
 
             </div>
+        </div> -->
+        <div class='container hero-slider-p' data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper init-swiper slider-p" id="hero-slider-con">
+            <script type="application/json" class="swiper-config">
+                {
+                "loop": true,
+                "speed": 600,
+                "autoplay": {
+                    "delay": 5000
+                },
+                "slidesPerView": "auto",
+                "pagination": {
+                    "el": ".swiper-pagination",
+                    "type": "bullets",
+                    "clickable": true
+                },
+                "breakpoints": {
+                    "320": {
+                    "slidesPerView": 1,
+                    "spaceBetween": 0
+                    },
+                    "1200": {
+                    "slidesPerView": 1,
+                    "spaceBetween": 0
+                    }
+                }
+                }
+            </script>
+            <div class="swiper-wrapper hero-slider-con">
+
+                <div class="swiper-slide hero-item" style="background-image: url(/assets/image/slide-images/father-kneeling-front-of-the-alter.jpg);">
+                    <div class="overlay"></div>
+                    <div class="hero-slide-text-con">
+                        <h4>
+                            Fr Geoffrey Ugwueke leading in the Eucharistic adoration
+                        </h4>
+                    </div>
+                </div>
+                <div class="swiper-slide hero-item" style="background-image: url(/assets/image/slide-images/father-offering-holy-communion.jpg);">
+                    <div class="overlay"></div>
+                    <div class="hero-slide-text-con">
+                        <h4>
+                            Rev Fr Lawrence Eze lifting the consecrated Host during the Eucharistic celebration
+                        </h4>
+                    </div>
+                </div>
+                <div class="swiper-slide hero-item" style="background-image: url(/assets/image/slide-images/father-raising-the-sacrament.jpg);">
+                    <div class="overlay"></div>
+                    <div class="hero-slide-text-con">
+                        <h4>
+                            Fr Geoffrey Ugwueke blessing with the monstrance
+                        </h4>
+                    </div>
+                </div>
+                <div class="swiper-slide hero-item" style="background-image: url(/assets/image/slide-images/bringing-in-our-mother-marry.jpg);">
+                    <div class="overlay"></div>
+                    <div class="hero-slide-text-con">
+                        <h4>
+                            Flower girls and Block Rosary brigade honoring Our Lady
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
         </div>
+        
+
+        </div><!-- Hero Slide -->  
     </div>
 
     
@@ -330,22 +396,22 @@
 
                 <div class="swiper-slide slider-item">
                     <div class="journey-con-vid">
-                        <video src="assets/videos/our-adventure-vids/OZ BLOCK ROSARY BEGIN.mp4" poster="assets/image/slide-images/bringing-in-our-mother-marry.jpg" controls width="80%" height="auto"></video> 
+                        <video src="assets/videos/our-adventure-vids/OZ BLOCK ROSARY BEGIN.mp4" poster="assets/image/our-adventure-pics/adventure12.JPG" controls width="80%" height="auto"></video> 
                     </div>
                 </div>
                 <div class="swiper-slide slider-item">
                     <div class="journey-con-vid">
-                        <video src="assets/videos/our-adventure-vids/OZ BLOCK ROSARY END.mp4" poster="assets/image/slide-images/bringing-in-our-mother-marry.jpg" controls width="80%" height="auto"></video> 
+                        <video src="assets/videos/our-adventure-vids/OZ BLOCK ROSARY END.mp4" poster="assets/image/our-adventure-pics/adventure12.JPG" controls width="80%" height="auto"></video> 
                     </div>
                 </div>
                 <div class="swiper-slide slider-item">
                     <div class="journey-con-vid">
-                        <video src="assets/videos/our-adventure-vids/OZ PHOTOS AND VIDEO COVERAGE A DAY WITH MARY BEGIN.mp4" poster="assets/image/slide-images/bringing-in-our-mother-marry.jpg" controls width="80%" height="auto"></video> 
+                        <video src="assets/videos/our-adventure-vids/OZ PHOTOS AND VIDEO COVERAGE A DAY WITH MARY BEGIN.mp4" poster="assets/image/our-adventure-pics/adventure12.JPG" controls width="80%" height="auto"></video> 
                     </div>
                 </div>
                 <div class="swiper-slide slider-item">
                     <div class="journey-con-vid">
-                        <video src="assets/videos/our-adventure-vids/OZ PHOTOS AND VIDEO COVERAGE A DAY WITH MARY END.mp4" poster="assets/image/slide-images/bringing-in-our-mother-marry.jpg" controls width="80%" height="auto"></video> 
+                        <video src="assets/videos/our-adventure-vids/OZ PHOTOS AND VIDEO COVERAGE A DAY WITH MARY END.mp4" poster="assets/image/our-adventure-pics/adventure12.JPG" controls width="80%" height="auto"></video> 
                     </div>
                 </div>
 
@@ -372,35 +438,35 @@
                         <p>Our network of small groups that meet regularly across the Midlands.</p>
                     </div>
                 </a>                            
-                <a href='#' title='' target='' class='page-desc-blocks--item' role='button'>
+                <a href='' title='' target='' class='page-desc-blocks--item' role='button'>
                     <div class='inline-image page-desc-blocks--item-image lazy' data-src="/assets/image/slide-images/father-kneeling-front-of-the-alter.jpg"></div>
                     <div class="page-desc-blocks--item-content">
                         <h5 class="page-desc-blocks--item-title">Teams</h5>
                         <p>Every day our amazing teams work together to make church happen.</p>
                     </div>
                 </a>                            
-                <a href='#' title='' target='' class='page-desc-blocks--item' role='button'>
+                <a href='' title='' target='' class='page-desc-blocks--item' role='button'>
                     <div class='inline-image page-desc-blocks--item-image lazy' data-src="/assets/image/slide-images/father-kneeling-front-of-the-alter.jpg"></div>
                     <div class="page-desc-blocks--item-content">
                         <h5 class="page-desc-blocks--item-title">Gatherings</h5>
                         <p>Find out where and when we gather together.</p>
                     </div>
                 </a>                            
-                <a href='#' title='' target='' class='page-desc-blocks--item' role='button'>
+                <a href='' title='' target='' class='page-desc-blocks--item' role='button'>
                     <div class='inline-image page-desc-blocks--item-image lazy' data-src="/assets/image/slide-images/father-kneeling-front-of-the-alter.jpg"></div>
                     <div class="page-desc-blocks--item-content">
                         <h5 class="page-desc-blocks--item-title">YOUTH</h5>
                         <p>Find out more about our YOUTH ministry </p>
                     </div>
                 </a>                            
-                <a href='#' title='' target='' class='page-desc-blocks--item' role='button'>
+                <a href='' title='' target='' class='page-desc-blocks--item' role='button'>
                     <div class='inline-image page-desc-blocks--item-image lazy' data-src="/assets/image/slide-images/father-kneeling-front-of-the-alter.jpg"></div>
                     <div class="page-desc-blocks--item-content">
                         <h5 class="page-desc-blocks--item-title">Kids</h5>
                         <p>Find out whats happening over Summer at Our Lady Wailing House Kids!</p>
                     </div>
                 </a>                            
-                <a href='#' title='' target='' class='page-desc-blocks--item' role='button'>
+                <a href='' title='' target='' class='page-desc-blocks--item' role='button'>
                     <div class='inline-image page-desc-blocks--item-image lazy' data-src="/assets/image/slide-images/father-kneeling-front-of-the-alter.jpg"></div>
                     <div class="page-desc-blocks--item-content">
                         <h5 class="page-desc-blocks--item-title">Young Adults</h5>
@@ -410,10 +476,177 @@
             </div>
         </div>
     </section>
-    
 
-<script src="vendor/aos/aos.js"></script>
+    <!-- Connect Socially -->
+    <h3 class="connect-social-tit">Connect With Us</h3>
+    <section class='carousel owl-carousel aos-init aos-animate' data-aos='fade-up' data-aos-delay='200'>
+        
+        <div class='inline-image carousel--slide owl-lazy' data-src='/assets/image/slide-images/father-kneeling-front-of-the-alter.jpg'>
+            <div class='container container--small'>
+                <div class='carousel--content'>
+                    <p style="text-align: center;">Keep in touch with our daily post on instragram</p>
+                    <div class='carousel--content-butt'>
+                        <a href='' title='' target='' class='button button--cherry'><i class="fa-brands fa-instagram"></i>  Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class='overlay'></div>
+        </div>
+
+        <div class='inline-image carousel--slide owl-lazy' data-src='/assets/image/slide-images/father-kneeling-front-of-the-alter.jpg'>
+            <div class='container container--small'>
+                <div class='carousel--content'>
+                    <p style="text-align: center;">Make sure to keep up to date on Facebook &#8211; follow us!</p>
+                    <div class='carousel--content-butt'>
+                        <a href='' title='' target='' class='button button--blue'><i class="fa-brands fa-facebook"></i>  Facebook</a>
+                    </div>
+                </div>
+            </div>
+            <div class='overlay'></div>
+        </div>
+        <div class='inline-image carousel--slide owl-lazy' data-src='/assets/image/slide-images/father-kneeling-front-of-the-alter.jpg'>
+            <div class='container container--small'>
+                <div class='carousel--content'>
+                    <p style="text-align: center;">You can view our Gathering and past streaming activities on our youtube channel</p>
+                    <p style="text-align: center;">Subscribe, watch and catch up.</p>
+                    <div class='carousel--content-butt'>
+                        <a href='' title='' target='' class='button button--cherry'><i class="fa-brands fa-youtube"></i> YouTube</a>
+                    </div>
+                </div>
+            </div>
+            <div class='overlay'></div>
+        </div>
+
+        <div class='inline-image carousel--slide owl-lazy' data-src='/assets/image/slide-images/father-kneeling-front-of-the-alter.jpg'>
+            <div class='container container--small'>
+                <div class='carousel--content'>
+                    <p style="text-align: center;">Join Our skype community as we do daily prayers on skype</p>
+                    <p style="text-align: center;">Join</p>
+                    <div class='carousel--content-butt'>
+                        <a href='' title='' target='' class='button button--blue'><i class="fa-brands fa-skype"></i> Skype</a>
+                    </div>
+                </div>
+            </div>
+            <div class='overlay'></div>
+        </div>
+    </section>
+    <section class="contact-form-section section section--green" aos-init aos-animate data-aos="fade-up" data-aos-delay="200">
+        <div class="container container--small flex" id="contacts-info-con">
+            <div class="contact-form-section--left-half">
+                <div class="section-content">
+                    <h3>Get in touch</h3>
+                    <p>We love to hear from people, so if you'd like to ask a question, get some info or just want to say hi, drop us a message below.</p>
+                </div>
+                <div class="section-form">
+                    <form action="">
+                        <input type="text" name="first-name" id="first-name" placeholder="First Name">
+                        <input type="text" name="last-name" id="last-name" placeholder="Last Name">
+                        <input type="email" name="email" id="email" placeholder="Email">
+                        <input type="text" name="subject" id="subject" placeholder="subject">
+                        <textarea name="" id="" cols="30" rows="10" placeholder="Messge"></textarea>
+                    </form>
+                </div>
+            </div>
+            <div class="map-con">
+                <h3>Location</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d13344.123874790816!2d7.601644322637028!3d6.099457020996997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sst%20anthony%20catholic%20church%20Awgu%20oduma!5e0!3m2!1sen!2sng!4v1727126802999!5m2!1sen!2sng" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+<footer class="footer">
+    <div class="footer-wrapper">
+        <div class="footer-head">
+            <a href="" class="header__logo">
+                <img class="logo-img" src="/assets/image/logo.jpg" alt="logo of our lady">
+                <h1><span class="spacial-tit-char">O</span>ur 
+                    <span class="spacial-tit-char">L</span>adys
+                    <span class="spacial-tit-char">W</span>ailing
+                    <span class="spacial-tit-char">H</span>ouse
+                </h1>
+            </a>
+        </div>
+        <hr>
+        <div class="container container--small footer-info-con">
+            <div>
+                <h6>Social</h6>
+                <ul>
+                    <li><a href=""><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+                    <li><a href=""><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                    <li><a href=""><i class="fa-brands fa-youtube"></i> Youtube</a></li>
+                    <li><a href=""><i class="fa-brands fa-skype"></i> Skype</a></li>
+                    <li><a href=""><i class="fa-solid fa-envelope"></i> Email</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h6>Quick Link</h6>
+                <ul>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Doc</a></li>
+                    <li><a href="">Events</a></li>
+                    <li><a href="">Events</a></li>
+                    <li><a href="">Events</a></li>
+                </ul>
+            </div>
+                
+            <div>
+                <h6>Activities</h6>
+                <ul>
+                    <li>
+                        <span>Day With Mary</span><br>
+                        <span>Saturday</span> <span>5 pm</span> -- <span>8:30am</span>
+                    </li>
+                    <li>
+                        <span>Day with Mary</span><br>
+                        <span>Sunday</span>: <span>7:30am</span> -- <span>8:30am</span>
+                    </li>
+                    <li>
+                        <span>Day with Mary</span><br>
+                        <span>Sunday</span>: <span>7:30am</span> -- <span>8:30am</span>
+                    </li>
+                    <li>
+                        <span>Day with Mary</span><br>
+                        <span>Sunday</span>: <span>7:30am</span> -- <span>8:30am</span>
+                    </li>
+                    <li>
+                        <span>Day with Mary</span><br>
+                        <span>Sunday</span>: <span>7:30am</span> -- <span>8:30am</span>
+                    </li>
+                    <li>
+                        <span>Day With Mary on Skype</span><br>
+                        <span>Monday</span> <span>8am</span> -- <span>8:30am</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+    
+        <div class="footer-foot">
+            <address>
+                <p><i class="fas fa-map-marker-alt"></i> Opposite st Micheal Catholic Church</p>
+            </address>
+            <p>&copy; All right reserved</p>
+        </div>
+    </div>
+</footer>
+
+</main>
+
+<div id="navigation" class="navigation">
+    <div class="navigation--wrapper">
+        <div class="container flexRowOnly">
+            <ul class="main-menu ">
+                <li class="main-menu__item  main-menu__item--1056"><a href="" class="main-menu__link">Our Mission</a></li>
+                <li class="main-menu__item  main-menu__item---78"><a href="" class="main-menu__link">Our Locations</a></li>
+                <li class="main-menu__item  main-menu__item--2967"><a href="" class="main-menu__link">Our Beliefs</a></li>
+                <li class="main-menu__item  main-menu__item--4289"><a href="" class="main-menu__link">Our Team</a></li>
+                <li class="main-menu__item  main-menu__item--193"><a href="" class="main-menu__link">Church Life</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
 <script src="/vendor/swiper/swiper-bundle.min.js"></script>
-<!-- <script type="text/javascript" src="https://renewalcc.com/app/themes/adaptable/bundle.js" id="script-js"></script> -->
 <script type="text/javascript" src="./themes/adaptable/js/bundle.js" id="script-js"></script>
 <script src="js/main.js"></script>
