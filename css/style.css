@@ -4,11 +4,42 @@
 .button--blue {
     background: #6465ff;
 }
+.main-menu{
+    width: 100%;
+}
+.hero-slider-p{width: 100%;}
+#hero-slider-con{
+    height: 75vh;
+    width: 100%;
+}
+.hero-item{
+    background-image: url(/assets/image/slide-images/bringing-in-our-mother-marry.jpg);
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+.hero-slide-text-con{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+.hero-slide-text-con h4{
+    position: relative;
+    z-index: 3;
+    width: 70%;
+    font-size: x-large;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 30%;
+    margin-left: 10%;
+}
 :root{
-    --header-background: #00051f;
+    /* --header-background: #00051f;
     --background-color: #f0eaea;
-    --background-image: linear-gradient(to right, #cacbd3, #f0eaea, #f0eaea, #cacbd3);
-    --foreground-primary-color: #cb935f;
+    --background-image: linear-gradient(to right, #cacbd3, #f0eaea, #f0eaea, #cacbd3); */
+    --bar-tit: #daeccc;
 }
 .bg-img{
     background-position: center;
@@ -25,7 +56,7 @@
     border-radius: 80px;
 }
 .header__logo h1{
-    line-height: 1rem;
+    line-height: 1.5rem;
     color: rgb(235, 235, 235);
     max-width: 200px;
     font-weight: bolder;
@@ -36,21 +67,23 @@
     color: rgb(255, 255, 255);
     font-size: x-large;
 }
-a.header-live-btn{
+.header-live-btn{
     border-radius: 8px;
     font-size: large;
-    border: 1px solid green;
-    color: black;
-    background-color: #fff;
-    padding: 5px;
-    padding-inline: 8px;
+    border: 3px solid green;
 }
-.banner-slider-container {
-    min-height: 100vh;
+.header-live-btn:hover{
+    background-color: #222;
+    color: #fff;
 }
+
 .banner-slider--item {
     height: 100vh;
 }
+.banner-slider--content-contain h1{
+    font-weight: bold;
+}
+
 
 
 
@@ -71,7 +104,7 @@ a.header-live-btn{
 
 
 .scrolling-text-p{
-    background-color: #d5ccec;
+    background-color: var(--bar-tit);
     text-align: center;
 }
 .scrolling-text-p h3{
@@ -129,8 +162,6 @@ a.header-live-btn{
 
 
 /* Hero section */
-.slider-con{
-}
 .slider-item{
     background-position: center;
     background-size: cover;
@@ -203,4 +234,118 @@ a.header-live-btn{
 }
 .swiper-pagination-bullet-active{
     width: 30px;
+}
+
+.connect-social-tit{
+    font-weight: bold;
+    color: #00c670;;
+    font-size: xx-large;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+
+#contacts-info-con{
+    display: grid;
+}
+#contacts-info-con > div{
+    max-width: 100%;
+    margin-inline: 0;
+}
+.map-con{
+    order: 3;
+}
+.map-con h3{
+    color: #fff;
+    margin-bottom: 0;
+}
+.map-con iframe{
+    width: 100%;
+}
+.contact-form-section--left-half{
+    width: 100%;
+}
+
+
+
+
+footer.footer{
+    padding-top: 40px;
+    padding-bottom: 10px;
+    color: #fff;
+}
+.footer .header__logo h1{
+    line-height: 1.5rem;
+    color: rgb(235, 235, 235);
+    max-width: none;
+    font-weight: bolder;
+    font-size: large;
+    margin: 0;
+}
+.footer-info-con{
+    display: grid;
+}
+.footer-info-con h6{
+    color: #00c670;
+    font-size: x-large;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+.footer-info-con li{
+    margin-bottom: 10px;
+}
+.footer-info-con a, .footer-info-con li{
+    color: #aaa;
+}
+.footer-foot p{
+    color: #999;
+    margin: 0;
+    font-size: medium;
+    text-align: center;
+}
+.footer-info-con span:nth-child(1){
+    color: #ccc;
+    font-weight: bold;
+}
+@media only screen and (min-width: 767px){
+    #hero-slider-con{
+        height: 75vh;
+        width: 100%;
+    }
+    .hero-slide-text-con h4{
+        width: 60%;
+        font-size: xx-large;
+        margin-bottom: 10%;
+        margin-left: 5%;
+    }
+    .footer-info-con{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media only screen and (min-width: 1024px){
+    #hero-slider-con{
+        height: 100vh;
+        width: 100%;
+    }
+    .header-live-btn{
+        font-weight: bold;
+        padding: 16px 20px;
+        background-color: #fff;
+        border: none;
+    }
+    .hero-slide-text-con h4{
+        width: 45%;
+    }
+    .live-menu-con{
+        gap: 20px;
+    }
+    #contacts-info-con{
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: center;
+    }
+    .footer-info-con h6{
+        font-size: x-large;
+    }
 }
