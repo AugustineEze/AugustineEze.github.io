@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Ladys Wailing House Live</title>
+    <link rel="stylesheet" href="../../css/live/audience.css">
+</head>
+<body>
+    <div class="container disable-bar">
+        <div class="bar-con">
+            <button class="toggle-bar">B</button>
+            <div class="bar"></div>
+        </div>
+        <div class="screen-panel-p">
+            <div class="screens">
+                <div class="hosts-screen single-host duo-host trio-host">
+                    <div class="host-1-con"></div>
+                    <div class="host-2-con"></div>
+                    <div class="host-3-con"></div>
+                </div>
+                <div class="chart-screen"></div>
+            </div>
+            <div class="ctrl-con">
+                <button class="toggle-ctrl-panel">C</button>
+                <div class="ctrl-panel">
+                    
+                </div>
+                <button class="toggle-chart-screen">T</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const toggleCtrlPanel = document.querySelector(".toggle-ctrl-panel");
+        const toggleChart = document.querySelector(".toggle-chart-screen");
+        const toggleBar = document.querySelector(".toggle-bar");
+        const container = document.querySelector(".container");
+
+
+
+        screenSetStorage = "screen-setting"
+        let screenSet = JSON.parse(localStorage.getItem(screenSetStorage)) || {
+            ctrlPanel: true,
+            chartScreen: true,
+            bar: true,
+            fullScreen: false
+        }
+
+        screenSet.ctrlPanel?container.classList.remove("disable-panel"):container.classList.add("disable-panel");
+        screenSet.chartScreen?container.classList.remove("disable-chart"):container.classList.add("disable-chart");
+        screenSet.bar?container.classList.remove("disable-bar"):container.classList.add("disable-bar");
+    </script>
+
+    <!-- Check if the host screen is tall or wide-->
+    <script>
+        const hostsScreen = document.querySelector(".hosts-screen");
+        
+        if(hostsScreen.clientHeight / hostsScreen.clientWidth >= 1.15){
+            hostsScreen.classList.add("tall");
+        }
+        if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 1.5){
+            if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 2){
+                if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 3){
+                    hostsScreen.classList.add("xx-wide");
+                }else{
+                    hostsScreen.classList.add("x-wide");
+                }
+            }
+            else{
+                hostsScreen.classList.add("wide");
+            }
+        }
+        else{
+            hostsScreen.classList.remove("wide", "x-wide", "xx-wide")
+        }
+        
+
+        window.addEventListener("resize", ()=>{
+            if(hostsScreen.clientHeight / hostsScreen.clientWidth >= 1.15){
+                hostsScreen.classList.add("tall");
+                console.log("Tall")
+            }
+            else{
+                hostsScreen.classList.remove("tall");
+            }
+
+            if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 1.5){
+                if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 2){
+                    if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 3){
+                        hostsScreen.classList.add("xx-wide");
+                    }else{
+                        hostsScreen.classList.add("x-wide");
+                    }
+                }
+                else{
+                    hostsScreen.classList.add("wide");
+                }
+            }else{
+                hostsScreen.classList.remove("wide", "x-wide", "xx-wide")
+            }
+        })
+    </script>
+
+    <!-- Toggle Toggle Control Panel -->
+    <script>
+        
+
+        toggleCtrlPanel.addEventListener("click", ()=>{
+            container.classList.toggle("disable-panel");
+            //Setting users screen set
+            container.classList.contains("disable-panel")?
+            screenSet.ctrlPanel = false: screenSet.ctrlPanel = true;
+            saveScreenSetting();
+        })
+        toggleChart.addEventListener("click", ()=>{
+            container.classList.toggle("disable-chart");
+            //Setting users screen set
+            container.classList.contains("disable-chart")?
+            screenSet.chartScreen = false: screenSet.chartScreen = true;
+            saveScreenSetting();
+        })
+        toggleBar.addEventListener("click", ()=>{
+            container.classList.toggle("disable-bar");
+            //Setting users screen set
+            container.classList.contains("disable-bar")?
+            screenSet.bar = false: screenSet.bar = true;
+            saveScreenSetting();
+        })
+
+        function saveScreenSetting(){
+            localStorage.setItem(screenSetStorage, JSON.stringify(screenSet));
+        }
+    </script>
+
+    
+</body>
+</html>
