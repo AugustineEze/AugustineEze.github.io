@@ -40,6 +40,9 @@
     --background-color: #f0eaea;
     --background-image: linear-gradient(to right, #cacbd3, #f0eaea, #f0eaea, #cacbd3); */
     --bar-tit: #daeccc;
+    --blue: #007aff;
+    --green: #00c670;
+    --red: #e63645;
 }
 .bg-img{
     background-position: center;
@@ -238,9 +241,10 @@
 
 .connect-social-tit{
     font-weight: bold;
-    color: #00c670;;
-    font-size: xx-large;
-    margin-bottom: 0;
+    color: var(--green);
+    margin-bottom: 10px;
+    font-size: x-large;
+    margin-bottom: 5px;
     text-align: center;
 }
 
@@ -286,7 +290,7 @@ footer.footer{
     display: grid;
 }
 .footer-info-con h6{
-    color: #00c670;
+    color: var(--green);
     font-size: x-large;
     font-weight: bold;
     margin-bottom: 0;
@@ -317,6 +321,10 @@ footer.footer{
         font-size: xx-large;
         margin-bottom: 10%;
         margin-left: 5%;
+    }
+    .connect-social-tit{
+        font-size: xx-large;
+        margin-bottom: 10px;
     }
     .footer-info-con{
         display: grid;

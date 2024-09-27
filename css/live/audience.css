@@ -1,0 +1,200 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body,form, input, button, textarea{
+    font-family: cera-pro-bold, sans-serif;
+}
+body{
+    background-color: yellow;
+    width: 100%;
+    height: 100vh;
+}
+.container{
+    background-color: green;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 55px 1fr;
+}
+.bar{
+    background-color: yellow;
+    height: 100%;
+    width: 100%;
+}
+.toggle-bar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 10px;
+    z-index: 1;
+}
+.disable-bar{
+    grid-template-rows: 0fr 1fr;
+}
+.screen-panel-p{
+    height: 100%;
+    background-color: orange;
+    display: grid;
+    grid-template-rows: 1fr 50px;
+}
+/* .disable-panel{
+    grid-template-rows: 55px 1fr;
+}
+.disable-panel .ctrl-panel{
+    display: none;
+} */
+.disable-panel .screen-panel-p{
+    grid-template-rows: 1fr;
+}
+.ctrl-panel{
+    display: block;
+    background-color: purple;
+    width: 100%;
+    height: 100%;
+}
+.ctrl-panel{
+    transition: all 2s;
+}
+.toggle-ctrl-panel{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin: 10px;
+}
+
+
+.chart-screen{
+    background-color: pink;
+    display: block;
+}
+.toggle-chart-screen{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 10px;
+}
+.disable-chart .screens{
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+.disable-chart .chart-screen{
+    display: none;
+}
+
+
+
+
+/* Screens Set Up */
+.screens{
+    height: 100%;
+    background-color: black;
+    display: grid;
+    grid-template-columns: minmax(380px, 1fr) minmax(70px, 380px);
+}
+.hosts-screen{
+    display: grid;
+    /* grid-column: span 2;
+    grid-row: span 2; */
+    background-color: green;
+    position: relative;
+}
+
+@media only screen and (max-width: 600px){
+    .screens{
+        background-color: black;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(220px, 1fr) minmax(70px, 300px);
+    }
+}
+/*End of screen set up*/
+
+.host-1-con{
+    background-color: brown;
+}
+.host-2-con{
+    background-color: orange;
+}
+.host-3-con{
+    background-color: wheat;
+}
+
+
+/*Single Host Set Up*/
+/* .single-host{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    background-color: aqua;
+    grid-template-columns: 1fr;
+}
+.single-host .host-2-con{
+    display: none;
+}
+.single-host .host-3-con{
+    display: none;
+} *//*Single Host End*/
+
+
+/*Duo-Host Set Up*/
+/* .duo-host{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.host-3-con{
+    display: none;
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1024px){
+    .duo-host{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}
+@media only screen and (max-width: 600px){
+    .tall{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+} *//*Dou-Host End*/
+
+/*Trio Host Set Up*/
+.trio-host{
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+.trio-host .host-1-con{
+    grid-row: span 2;
+}
+@media only screen and (min-width: 600px) and (max-width: 1024px){
+    .trio-host{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+    .trio-host .host-1-con{
+        grid-row: span 1;
+    }
+}
+@media only screen and (max-width: 600px){
+    .tall{
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
+    .tall .host-1-con{
+        grid-row: span 1;
+    }
+}
+.wide {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+.wide .host-1-con{
+    grid-row: span 2;
+}
+.x-wide, .xx-wide{
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+ /*Trio Host End*/
