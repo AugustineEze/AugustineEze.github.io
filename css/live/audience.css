@@ -110,7 +110,6 @@ body{
     }
 }
 /*End of screen set up*/
-
 .host-1-con{
     background-color: brown;
 }
@@ -122,78 +121,87 @@ body{
 }
 
 
-/*Single Host Set Up*/
-/* .single-host{
+/*Single Base Host Set Up*/
+.single-base-host{
     display: grid;
     width: 100%;
     height: 100%;
     background-color: aqua;
     grid-template-columns: 1fr;
 }
-.single-host .host-2-con{
+.single-base-host .host-2-con, .single-base-host .host-3-con{
     display: none;
-}
-.single-host .host-3-con{
-    display: none;
-} *//*Single Host End*/
+} /*Single Host End*/
 
 
-/*Duo-Host Set Up*/
-/* .duo-host{
+/*Duo-Base-Host Set Up*/
+.duo-base-host{
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-.host-3-con{
+.duo-base-host .host-3-con{
     display: none;
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1024px){
-    .duo-host{
+    .duo-base-host{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}
+@media only screen and (min-width: 500px){
+    .duo-base-host.tall{
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
     }
 }
 @media only screen and (max-width: 600px){
-    .tall{
+    .duo-base-host.x-tall{
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
     }
-} *//*Dou-Host End*/
+}
+.duo-base-host.wide{
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+/*Dou-Host End*/
 
 /*Trio Host Set Up*/
-.trio-host{
+.trio-base-host{
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
 }
-.trio-host .host-1-con{
+.trio-base-host .host-1-con{
     grid-row: span 2;
 }
 @media only screen and (min-width: 600px) and (max-width: 1024px){
-    .trio-host{
+    .trio-base-host{
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr 1fr;
     }
-    .trio-host .host-1-con{
+    .trio-base-host .host-1-con{
         grid-row: span 1;
     }
 }
 @media only screen and (max-width: 600px){
-    .tall{
+    .trio-base-host.x-tall{
         grid-template-rows: 1fr 1fr 1fr;
         grid-template-columns: 1fr;
     }
-    .tall .host-1-con{
+    .trio-base-host.x-tall .host-1-con{
         grid-row: span 1;
     }
 }
-.wide {
+.trio-base-host.wide {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
 }
-.wide .host-1-con{
+.trio-base-host.wide .host-1-con{
     grid-row: span 2;
 }
-.x-wide, .xx-wide{
+.trio-base-host.x-wide, 
+.trio-base-host.xx-wide{
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
 }
