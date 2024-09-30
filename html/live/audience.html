@@ -14,7 +14,8 @@
         </div>
         <div class="screen-panel-p">
             <div class="screens">
-                <div class="hosts-screen single-host duo-host trio-host">
+                <!-- <div class="hosts-screen single-base-host duo-base-host trio-base-host"> -->
+                <div class="hosts-screen trio-base-host">
                     <div class="host-1-con"></div>
                     <div class="host-2-con"></div>
                     <div class="host-3-con"></div>
@@ -36,8 +37,7 @@
         const toggleBar = document.querySelector(".toggle-bar");
         const container = document.querySelector(".container");
 
-
-
+        //Getting the saved or default settings
         screenSetStorage = "screen-setting"
         let screenSet = JSON.parse(localStorage.getItem(screenSetStorage)) || {
             ctrlPanel: true,
@@ -46,59 +46,58 @@
             fullScreen: false
         }
 
-        screenSet.ctrlPanel?container.classList.remove("disable-panel"):container.classList.add("disable-panel");
-        screenSet.chartScreen?container.classList.remove("disable-chart"):container.classList.add("disable-chart");
-        screenSet.bar?container.classList.remove("disable-bar"):container.classList.add("disable-bar");
+        //Activate the saved settings
+        activateScreenSet();
+
+        //Activate the saved settings
+        function activateScreenSet(){
+            screenSet.ctrlPanel?container.classList.remove("disable-panel")
+                :container.classList.add("disable-panel");
+            screenSet.chartScreen?container.classList.remove("disable-chart")
+                :container.classList.add("disable-chart");
+            screenSet.bar?container.classList.remove("disable-bar")
+                :container.classList.add("disable-bar");
+        }
     </script>
 
     <!-- Check if the host screen is tall or wide-->
     <script>
         const hostsScreen = document.querySelector(".hosts-screen");
-        
-        if(hostsScreen.clientHeight / hostsScreen.clientWidth >= 1.15){
-            hostsScreen.classList.add("tall");
-        }
-        if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 1.5){
-            if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 2){
-                if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 3){
-                    hostsScreen.classList.add("xx-wide");
-                }else{
-                    hostsScreen.classList.add("x-wide");
-                }
-            }
-            else{
-                hostsScreen.classList.add("wide");
-            }
-        }
-        else{
-            hostsScreen.classList.remove("wide", "x-wide", "xx-wide")
-        }
-        
-
+        adentifyScreenSize();
         window.addEventListener("resize", ()=>{
+            adentifyScreenSize();
+        })
+
+        function adentifyScreenSize(){
+            //Check how tall the screen is
             if(hostsScreen.clientHeight / hostsScreen.clientWidth >= 1.15){
                 hostsScreen.classList.add("tall");
-                console.log("Tall")
+                hostsScreen.classList.add("x-tall");
+            }
+            else if(hostsScreen.clientHeight / hostsScreen.clientWidth >= 1.12){
+                hostsScreen.classList.add("tall");
             }
             else{
-                hostsScreen.classList.remove("tall");
+                hostsScreen.classList.remove("tall", "x-tall");
             }
 
-            if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 1.5){
-                if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 2){
-                    if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 3){
-                        hostsScreen.classList.add("xx-wide");
-                    }else{
-                        hostsScreen.classList.add("x-wide");
-                    }
-                }
-                else{
-                    hostsScreen.classList.add("wide");
-                }
-            }else{
+            //Check how wide the screen is
+            if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 3){
+                hostsScreen.classList.add("wide");
+                hostsScreen.classList.add("x-wide");
+                hostsScreen.classList.add("xx-wide");
+            }
+            else if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 2){
+                hostsScreen.classList.add("wide");
+                hostsScreen.classList.add("x-wide");
+            }
+            else if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 1.5){
+                hostsScreen.classList.add("wide");
+            }
+            else{
                 hostsScreen.classList.remove("wide", "x-wide", "xx-wide")
             }
-        })
+        }
     </script>
 
     <!-- Toggle Toggle Control Panel -->
@@ -131,7 +130,5 @@
             localStorage.setItem(screenSetStorage, JSON.stringify(screenSet));
         }
     </script>
-
-    
 </body>
 </html>
