@@ -37,6 +37,16 @@
         const toggleBar = document.querySelector(".toggle-bar");
         const container = document.querySelector(".container");
 
+        resizeContainer();
+        window.addEventListener("resize", resizeContainer)
+
+        function resizeContainer(){
+            /* container.clientHeight = window.innerHeight;
+            container.clientWidth = window.innerWidth; */
+            container.style.width = window.innerWidth + "px";
+            container.style.height = window.innerHeight + "px";
+        }
+
         //Getting the saved or default settings
         screenSetStorage = "screen-setting"
         let screenSet = JSON.parse(localStorage.getItem(screenSetStorage)) || {
