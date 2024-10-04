@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 100%; height: 100vh;" id="localVideo"></div>
+
+    <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
+
+    <script>
+        const APP_ID = "3409257b9d6e4370865958775de8e35e";
+        const CHANNEL = "church-live-stream";
+        const client = AgoraRTC.createClient({
+            mode: "live", 
+            codec: "vp8"
+        });
+
+        const localVideo = document.getElementById("localVideo");
+
+        async function startStreaming() {
+            try {
+                if(client.remoteUsers.length <= 3){
+                    console.error(client.remoteUsers)
+                    const uid = await client.join(APP_ID, CHANNEL, null, null);
+                console.log(`Host ${uid} joined the channel: ${CHANNEL}`);
+
+                // Set role to broadcaster
+                await client.setClientRole("host");
+
+                // Create audio and video tracks
+                const [audioTrack, videoTrack] = await AgoraRTC.createMicrophoneAndCameraTracks();
+
+                // Play the local video
+                videoTrack.play("localVideo");
+
+                // Publish the local stream
+                await client.publish([audioTrack, videoTrack]);
+                console.log("Host stream published");
+                }
+                else{
+                    alert("We have reached the maximum host for this site. Please Disconnect other host")
+                }
+                
+
+            } catch (error) {
+                console.error("Error during stream setup: ", error);
+            }
+        }
+
+        startStreaming();
+
+    </script>
+</body>
+</html>
