@@ -70,12 +70,14 @@
     color: rgb(255, 255, 255);
     font-size: x-large;
 }
-.header-live-btn{
+.live-menu-con a{
     border-radius: 8px;
+    padding: 2px;
     font-size: large;
     border: 3px solid green;
+    background-color: #fff;
 }
-.header-live-btn:hover{
+.live-menu-con a:hover{
     background-color: #222;
     color: #fff;
 }
