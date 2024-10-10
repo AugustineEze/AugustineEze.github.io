@@ -18,46 +18,55 @@
     <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
 
     <script>
-        const APP_ID = "3409257b9d6e4370865958775de8e35e";
-        const CHANNEL = "church-live-stream";
-        const client = AgoraRTC.createClient({
-            mode: "live", 
-            codec: "vp8"
-        });
+        let userInput = prompt("Enter Code To Start Streaming");
+        let code = "code1234...."
+        if(userInput === code){
+            console.log("This part was called")
+            const APP_ID = "3409257b9d6e4370865958775de8e35e";
+            const CHANNEL = "church-live-stream";
+            const client = AgoraRTC.createClient({
+                mode: "live", 
+                codec: "vp8"
+            });
 
-        const localVideo = document.getElementById("localVideo");
+            const localVideo = document.getElementById("localVideo");
 
-        async function startStreaming() {
-            try {
-                if(client.remoteUsers.length <= 3){
-                    console.error(client.remoteUsers)
-                    const uid = await client.join(APP_ID, CHANNEL, null, null);
-                console.log(`Host ${uid} joined the channel: ${CHANNEL}`);
+            async function startStreaming() {
+                try {
+                    if(client.remoteUsers.length <= 3){
+                        console.error(client.remoteUsers)
+                        const uid = await client.join(APP_ID, CHANNEL, null, null);
+                    console.log(`Host ${uid} joined the channel: ${CHANNEL}`);
 
-                // Set role to broadcaster
-                await client.setClientRole("host");
+                    // Set role to broadcaster
+                    await client.setClientRole("host");
 
-                // Create audio and video tracks
-                const [audioTrack, videoTrack] = await AgoraRTC.createMicrophoneAndCameraTracks();
+                    // Create audio and video tracks
+                    const [audioTrack, videoTrack] = await AgoraRTC.createMicrophoneAndCameraTracks();
 
-                // Play the local video
-                videoTrack.play("localVideo");
+                    // Play the local video
+                    videoTrack.play("localVideo");
 
-                // Publish the local stream
-                await client.publish([audioTrack, videoTrack]);
-                console.log("Host stream published");
+                    // Publish the local stream
+                    await client.publish([audioTrack, videoTrack]);
+                    console.log("Host stream published");
+                    }
+                    else{
+                        alert("We have reached the maximum host for this site. Please Disconnect other host")
+                    }
+                    
+
+                } catch (error) {
+                    console.error("Error during stream setup: ", error);
                 }
-                else{
-                    alert("We have reached the maximum host for this site. Please Disconnect other host")
-                }
-                
-
-            } catch (error) {
-                console.error("Error during stream setup: ", error);
             }
+
+            startStreaming();
+        }else{
+            console.log("The else was called");
+            document.body.innerHTML = "<h1>Code Is Incorrect</h1>" + "<br>" + "<a href='https://ourladyswailinghouse.org/html/live/audience.html'>View as audience</a>"
         }
 
-        startStreaming();
 
     </script>
 </body>
