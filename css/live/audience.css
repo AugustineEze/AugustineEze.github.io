@@ -8,6 +8,7 @@ body,form, input, button, textarea{
 }
 body{
     background-color: yellow;
+    /* overflow: hidden; */
     width: 100%;
     height: 100vh;
 }
@@ -33,6 +34,7 @@ body{
 .disable-bar{
     grid-template-rows: 0fr 1fr;
 }
+.disable-bar .bar{display: none;}
 .screen-panel-p{
     height: 100%;
     background-color: orange;
@@ -45,6 +47,9 @@ body{
 .disable-panel .ctrl-panel{
     display: none;
 } */
+.disable-panel .ctrl-panel{
+    display: none;
+}
 .disable-panel .screen-panel-p{
     grid-template-rows: 1fr;
 }
@@ -119,7 +124,26 @@ body{
 .host-3-con{
     background-color: wheat;
 }
-
+.host-con{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.host-vid{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.mute-btn{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 300;
+}
 
 /*Single Base Host Set Up*/
 .single-base-host{
@@ -134,34 +158,34 @@ body{
 } /*Single Host End*/
 
 
-/*Duo-Base-Host Set Up*/
-.duo-base-host{
+/*dou-Base-Host Set Up*/
+.dou-base-host{
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-.duo-base-host .host-3-con{
+.dou-base-host .host-3-con{
     display: none;
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1024px){
-    .duo-base-host{
+    .dou-base-host{
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
     }
 }
 @media only screen and (min-width: 500px){
-    .duo-base-host.tall{
+    .dou-base-host.tall{
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
     }
 }
 @media only screen and (max-width: 600px){
-    .duo-base-host.x-tall{
+    .dou-base-host.x-tall{
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
     }
 }
-.duo-base-host.wide{
+.dou-base-host.wide{
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
 }
