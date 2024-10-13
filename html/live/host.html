@@ -1,83 +1,9 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
-    <title>Document</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-    </style>
-</head>
-<body>
-    <div style="width: 100%; height: 100vh;" id="localVideo"></div>
-
-    <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
-
-    <script>
-        let userInput = prompt("Enter Code To Start Streaming");
-        let code = "code1234...."
-        if(userInput === code){
-            console.log("This part was called")
-            const APP_ID = "3409257b9d6e4370865958775de8e35e";
-            const CHANNEL = "church-live-stream";
-            const client = AgoraRTC.createClient({
-                mode: "live", 
-                codec: "vp8"
-            });
-
-            const localVideo = document.getElementById("localVideo");
-
-            async function startStreaming() {
-                try {
-                    if(client.remoteUsers.length <= 3){
-                        console.error(client.remoteUsers)
-                        const uid = await client.join(APP_ID, CHANNEL, null, null);
-                    console.log(`Host ${uid} joined the channel: ${CHANNEL}`);
-
-                    // Set role to broadcaster
-                    await client.setClientRole("host");
-
-                    // Create audio and video tracks
-                    const [audioTrack, videoTrack] = await AgoraRTC.createMicrophoneAndCameraTracks();
-
-                    // Play the local video
-                    videoTrack.play("localVideo");
-
-                    // Publish the local stream
-                    await client.publish([audioTrack, videoTrack]);
-                    console.log("Host stream published");
-                    }
-                    else{
-                        alert("We have reached the maximum host for this site. Please Disconnect other host")
-                    }
-                    
-
-                } catch (error) {
-                    console.error("Error during stream setup: ", error);
-                }
-            }
-
-            startStreaming();
-        }else{
-            console.log("The else was called");
-            document.body.innerHTML = "<h1>Code Is Incorrect</h1>" + "<br>" + "<a href='https://ourladyswailinghouse.org/html/live/audience.html'>View as audience</a>"
-        }
-
-
-    </script>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
-    <title>Document</title>
+    <title>Our-Ladys-Wailing-House-Host</title>
     <style>
         * {
             margin: 0;
@@ -88,115 +14,123 @@
 </head>
 <body>
     <div style="width: 100%; height: 100vh;" id="localVideo"></div>
-    <button id="switchCameraBtn" style="position: absolute; top: 10px; right: 10px;">Switch Camera</button>
+    <button id="switchCameraBtn" style="position: absolute; top: 10px; left: 10px;">Switch Camera</button>
 
     <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
 
     <script>
+        let localTracks = {
+            videoTrack: null,
+            audioTrack: null
+        };
+        let cameraList = []; // Store valid camera devices here
+        let currentCameraIndex = 0; // Keep track of the active camera
+        let client;
+        const localVideo = document.getElementById("localVideo");
+
+        const APP_ID = "3409257b9d6e4370865958775de8e35e"; // Moved APP_ID here
+        const CHANNEL = "church-live-stream"; // Moved CHANNEL here
+
         let userInput = prompt("Enter Code To Start Streaming");
         let code = "code1234....";
-        let localTracks = {
-            audioTrack: null,
-            videoTrack: null
-        };
-        let cameraList = [];
-        let currentCameraIndex = 0;
 
         if (userInput === code) {
-            console.log("This part was called");
+            console.log("Streaming started");
 
-            const APP_ID = "3409257b9d6e4370865958775de8e35e";
-            const CHANNEL = "church-live-stream";
-            const client = AgoraRTC.createClient({
-                mode: "live", 
+            client = AgoraRTC.createClient({
+                mode: "live",
                 codec: "vp8"
             });
 
-            const localVideo = document.getElementById("localVideo");
-            const switchCameraBtn = document.getElementById("switchCameraBtn");
-
-            async function startStreaming() {
-                try {
-                    // Limit to 3 hosts
-                    if (client.remoteUsers.length <= 3) {
-                        console.error(client.remoteUsers);
-
-                        const uid = await client.join(APP_ID, CHANNEL, null, null);
-                        console.log(`Host ${uid} joined the channel: ${CHANNEL}`);
-
-                        // Set role to broadcaster
-                        await client.setClientRole("host");
-
-                        // Get the list of available cameras
-                        cameraList = await AgoraRTC.getCameras();
-                        console.log("Available cameras:", cameraList);
-
-                        // Create audio and video tracks
-                        const [audioTrack, videoTrack] = await AgoraRTC.createMicrophoneAndCameraTracks();
-
-                        // Save the tracks to the localTracks object
-                        localTracks.audioTrack = audioTrack;
-                        localTracks.videoTrack = videoTrack;
-
-                        // Play the local video
-                        videoTrack.play("localVideo");
-
-                        // Publish the local stream
-                        await client.publish([audioTrack, videoTrack]);
-                        console.log("Host stream published");
-
-                    } else {
-                        alert("We have reached the maximum host for this site. Please disconnect other host.");
-                    }
-                } catch (error) {
-                    console.error("Error during stream setup: ", error);
-                }
-            }
-
-            // Function to switch between cameras
-            async function switchCamera() {
-                try {
-                    // Stop and close the current video track
-                    if (localTracks.videoTrack) {
-                        localTracks.videoTrack.stop();
-                        localTracks.videoTrack.close();
-                    }
-
-                    // Switch to the next camera in the list
-                    currentCameraIndex = (currentCameraIndex + 1) % cameraList.length;
-                    const newCameraId = cameraList[currentCameraIndex].deviceId;
-
-                    // Create a new video track with the selected camera
-                    const newVideoTrack = await AgoraRTC.createCameraVideoTrack({
-                        cameraId: newCameraId
-                    });
-
-                    // Save the new video track
-                    localTracks.videoTrack = newVideoTrack;
-
-                    // Play the new video
-                    newVideoTrack.play("localVideo");
-
-                    // Unpublish the old track and publish the new one
-                    await client.unpublish(localTracks.videoTrack); // Unpublish old video track
-                    await client.publish(newVideoTrack); // Publish new video track
-
-                    console.log("Switched to camera:", newCameraId);
-                } catch (error) {
-                    console.error("Error switching camera: ", error);
-                }
-            }
-
-            // Start streaming on load
+            // Start streaming
             startStreaming();
 
-            // Add event listener to the switch camera button
-            switchCameraBtn.addEventListener("click", switchCamera);
-
+            // Set up camera switch button functionality
+            document.getElementById("switchCameraBtn").onclick = switchCamera;
         } else {
-            console.log("The else was called");
+            console.log("Incorrect code.");
             document.body.innerHTML = "<h1>Code Is Incorrect</h1>" + "<br>" + "<a href='https://ourladyswailinghouse.org/html/live/audience.html'>View as audience</a>";
         }
+
+        // Function to start the stream and initialize video/audio tracks
+        async function startStreaming() {
+            try {
+                const uid = await client.join(APP_ID, CHANNEL, null, null);
+                console.log(`Host ${uid} joined the channel: ${CHANNEL}`);
+
+                // Set role to broadcaster
+                await client.setClientRole("host");
+
+                // Create audio and video tracks
+                [localTracks.audioTrack, localTracks.videoTrack] = await AgoraRTC.createMicrophoneAndCameraTracks();
+
+                // Play the local video
+                localTracks.videoTrack.play("localVideo");
+
+                // Publish the local stream
+                await client.publish([localTracks.audioTrack, localTracks.videoTrack]);
+                console.log("Host stream published");
+
+                // Initialize the camera switching functionality
+                initCameraSwitching();
+            } catch (error) {
+                console.error("Error during stream setup: ", error);
+            }
+        }
+
+        // Function to get valid cameras (front and back)
+        async function getValidCameras() {
+            const devices = await AgoraRTC.getCameras();
+            // Filter cameras based on labels
+            const validCameras = devices.filter(device => device.label.includes('front') || device.label.includes('back'));
+            return validCameras;
+        }
+
+        // Initialize camera switching (fetch the list of valid cameras)
+        async function initCameraSwitching() {
+            cameraList = await getValidCameras();
+            if (cameraList.length > 1) {
+                console.log("Multiple cameras available for switching.");
+            } else {
+                console.log("Only one camera available, switch not possible.");
+                document.getElementById("switchCameraBtn").disabled = true; // Disable switch button if no extra camera
+            }
+        }
+
+        // Switch between available cameras
+        async function switchCamera() {
+            try {
+                if (cameraList.length < 2) return; // No need to switch if only one camera
+
+                // Stop and close the current video track
+                await client.unpublish(localTracks.videoTrack);
+                localTracks.videoTrack.stop();
+                localTracks.videoTrack.close();
+
+                // Switch to the next camera in the list
+                currentCameraIndex = (currentCameraIndex + 1) % cameraList.length;
+                const newCameraId = cameraList[currentCameraIndex].deviceId;
+
+                // Create a new video track with the selected camera
+                const newVideoTrack = await AgoraRTC.createCameraVideoTrack({
+                    cameraId: newCameraId
+                });
+
+                // Play the new video locally
+                newVideoTrack.play("localVideo");
+
+                // Publish the new video track
+                await client.publish(newVideoTrack);
+
+                // Update the local track reference
+                localTracks.videoTrack = newVideoTrack;
+
+                console.log("Switched to camera:", newCameraId);
+            } catch (error) {
+                console.error("Error switching camera: ", error);
+            }
+        }
+
     </script>
 </body>
 </html>
