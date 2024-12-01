@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no" />
+    <title>Our Ladys Wailing House</title>
+    <link rel="icon" href="https://res.cloudinary.com/dbw65zshr/image/upload/v1733067659/logo_bfrjaw.jpg">
+
+    <link rel='stylesheet' id='site_styles-css' href='../themes/adaptable/css/style.css' type='text/css' media='all' />
+
+    <link rel="stylesheet" href="../vendor/swiper/swiper-bundle.min.css">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <!--I think this script is in charge of getting all the images-->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="../lib/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/549b092043.js" defer crossorigin="anonymous"></script>
+
+    <style>
+        :root{
+            --border-color: #874ae1;
+            --border-color: #e63645;
+        }
+        section{
+            position: relative;
+            z-index: 1;
+        }
+        .team-grid{
+            /* display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-auto-rows: 300px;
+            gap: 80px; */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+        }
+        .card{
+            /* width: 100%;
+            height: 100%; */
+            min-width: 220px;
+            max-width: 270px;
+            min-height: 400px;
+            position: relative;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card::before, .card::after{
+            content: "";
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: -1;
+            background-color: var(--border-color);
+            border: 8px solid var(--border-color);
+        }
+        .card::before{
+            width: 102%;
+            height: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            background-color: var(--border-color);
+            border: 3px solid var(--border-color);
+        }
+        .card::after{
+            width: 50%;
+            height: 102%;
+            transform: translate(-50%, -50%);
+            background-color: var(--border-color);
+            border: 3px solid var(--border-color);
+           
+        }
+        .card figure{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            flex-grow: 1;
+            flex-basis: 1;
+            display: flex;
+            justify-content: center;
+        }
+        .card figure img{
+            flex-grow: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card figcaption{
+            background-color: #a82c37;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        
+        figcaption h4, figcaption h5, figcaption h6, figcaption p{
+            font-weight: bold;
+            font-size: medium;
+            margin: 0;
+            padding: 0;
+            line-height: normal;
+            display: flex;
+            justify-content: center;
+         }
+         figcaption h5{
+            margin: 10px;
+            color: #fff;
+        }
+        figcaption h6{
+            margin: 8px;
+            margin-bottom: 0;
+            color: #aaa;
+        }
+        .card .link-con ul{
+            width: 80%;
+            display: flex;
+            background-color: #e14a7a;
+            justify-content: center;
+            gap: 20px;
+            margin: 0;
+            margin-inline: auto;
+            padding: 10px;
+            transform: translate(0, 40%);
+        }
+        ul a{
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body class="home page-template-default page page-id-185">
+    <!-- <div>
+        <h6>We are currently unable to keep track of donations on the web app. But as you make your donation we continue to improve. Please make payment to the account below 👇</h6>
+    </div> -->
+<div class="image-overlay" style="display: none;">
+    
+    <div class="selected-img-con swipeArea">
+        <button class="close-prev-btn">X</button>
+        <button id="prev-btn">&lt</button>
+        <div class="selected-image" style="background-image: url(../assets/image/images/logo-original.jpg);"></div>
+        <button id="nxt-btn">&gt;</button>
+    </div>
+</div>
+<header class="header">
+    <div class="header__gradient"></div>
+    <div class="container flexRowOnly header__row">
+        <a href="" class="header__logo">
+            <img class="logo-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733067659/logo_bfrjaw.jpg" alt="logo of our lady">
+            <h1><span class="spacial-tit-char">O</span>ur 
+                <span class="spacial-tit-char">L</span>adys
+                <span class="spacial-tit-char">W</span>ailing
+                <span class="spacial-tit-char">H</span>ouse
+            </h1>
+        </a>
+
+        <div class="flex--align-center live-menu-con">
+            <a href="live.html" class="header-live-btn">
+                Live
+            </a>
+            <button id="menu-button" class="menu-toggle flex--align-center" aria-label="Mobile menu toggle">
+                <span class="menu-button"></span>
+                <span class="menu-text">menu</span>
+            </button>
+        </div>
+    </div>
+
+</header>
+
+<main>
+
+    <div class="banner-slider-container">
+        <div class='container hero-slider-p' data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper init-swiper slider-p" id="hero-slider-con">
+            <div class="swiper-wrapper hero-slider-con">
+
+                <div class="swiper-slide hero-item" style="background-image: url(https://res.cloudinary.com/dbw65zshr/image/upload/v1733066087/hero_sjlbav.jpg);">
+                    <div class="overlay"></div>
+                    <div class="hero-slide-text-con">
+                        <h4>
+                            Our Team: Guided by Faith and Devotion
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        
+
+        </div><!-- Hero Slide -->  
+    </div>
+
+    
+    <section class="section page-desc-blocks section-block-builder">
+        <div class="container container--small">
+            <h2 class="section-title section-title--cherry aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">Our Team</h2>
+            <p class="section-description aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                At Our Lady's Wailing House, we are blessed to have a dedicated team who work tirelessly to uphold the mission of honoring Mother Mary and spreading her message of love and devotion. Meet the individuals who guide and support our spiritual journey, ensuring that our prayers, teachings, and services reach hearts near and far.
+            </p>
+            <div class="page-desc-blocks--contain aos-init aos-animate team-grid" data-aos="fade-up" data-aos-delay="200">
+                <div class="card">
+                    <figure>
+                        <div><img src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733066461/team1-priest_icsuf5.jpg" alt=""></div>
+                    </figure>
+                    <figcaption>
+                        <h5>Rev. Fr. Geoffrey</h5>
+                        <h6>Spiritual Leader and Visionary</h6>
+
+                        <div class="link-con">
+                            <ul>
+                                <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <div><img src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733066461/team1-priest_icsuf5.jpg" alt=""></div>
+                    </figure>
+                    <figcaption>
+                        <h5>Rev. Fr. Geoffrey</h5>
+                        <h6>Spiritual Leader and Visionary</h6>
+
+                        <div class="link-con">
+                            <ul>
+                                <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <div><img src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733066461/team1-priest_icsuf5.jpg" alt=""></div>
+                    </figure>
+                    <figcaption>
+                        <h5>Rev. Fr. Geoffrey</h5>
+                        <h6>Spiritual Leader and Visionary</h6>
+
+                        <div class="link-con">
+                            <ul>
+                                <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <div><img src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733066461/team1-priest_icsuf5.jpg" alt=""></div>
+                    </figure>
+                    <figcaption>
+                        <h5>Rev. Fr. Geoffrey</h5>
+                        <h6>Spiritual Leader and Visionary</h6>
+
+                        <div class="link-con">
+                            <ul>
+                                <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <div><img src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733066461/team1-priest_icsuf5.jpg" alt=""></div>
+                    </figure>
+                    <figcaption>
+                        <h5>Rev. Fr. Geoffrey</h5>
+                        <h6>Spiritual Leader and Visionary</h6>
+
+                        <div class="link-con">
+                            <ul>
+                                <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <div><img src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733066461/team1-priest_icsuf5.jpg" alt=""></div>
+                    </figure>
+                    <figcaption>
+                        <h5>Rev. Fr. Geoffrey</h5>
+                        <h6>Spiritual Leader and Visionary</h6>
+
+                        <div class="link-con">
+                            <ul>
+                                <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <div><img src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733066461/team1-priest_icsuf5.jpg" alt=""></div>
+                    </figure>
+                    <figcaption>
+                        <h5>Rev. Fr. Geoffrey</h5>
+                        <h6>Spiritual Leader and Visionary</h6>
+
+                        <div class="link-con">
+                            <ul>
+                                <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <div><img src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733066461/team1-priest_icsuf5.jpg" alt=""></div>
+                    </figure>
+                    <figcaption>
+                        <h5>Rev. Fr. Geoffrey</h5>
+                        <h6>Spiritual Leader and Visionary</h6>
+
+                        <div class="link-con">
+                            <ul>
+                                <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <div><img src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733066461/team1-priest_icsuf5.jpg" alt=""></div>
+                    </figure>
+                    <figcaption>
+                        <h5>Rev. Fr. Geoffrey</h5>
+                        <h6>Spiritual Leader and Visionary</h6>
+
+                        <div class="link-con">
+                            <ul>
+                                <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <div><img src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733066461/team1-priest_icsuf5.jpg" alt=""></div>
+                    </figure>
+                    <figcaption>
+                        <h5>Rev. Fr. Geoffrey</h5>
+                        <h6>Spiritual Leader and Visionary</h6>
+
+                        <div class="link-con">
+                            <ul>
+                                <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <div><img src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733066461/team1-priest_icsuf5.jpg" alt=""></div>
+                    </figure>
+                    <figcaption>
+                        <h5>Rev. Fr. Geoffrey</h5>
+                        <h6>Spiritual Leader and Visionary</h6>
+
+                        <div class="link-con">
+                            <ul>
+                                <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <div><img src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733066461/team1-priest_icsuf5.jpg" alt=""></div>
+                    </figure>
+                    <figcaption>
+                        <h5>Rev. Fr. Geoffrey</h5>
+                        <h6>Spiritual Leader and Visionary</h6>
+
+                        <div class="link-con">
+                            <ul>
+                                <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </figcaption>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<footer class="footer">
+    <div class="footer-wrapper">
+        <hr>
+        <div class="footer-head">
+            <a href="" class="header__logo">
+                <img class="logo-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733067659/logo_bfrjaw.jpg" alt="logo of our lady">
+                <h1><span class="spacial-tit-char">O</span>ur 
+                    <span class="spacial-tit-char">L</span>adys
+                    <span class="spacial-tit-char">W</span>ailing
+                    <span class="spacial-tit-char">H</span>ouse
+                </h1>
+            </a>
+        </div>
+        <hr>
+        <div class="container container--small footer-info-con">
+            <div>
+                <h6>Social</h6>
+                <ul>
+                    <li><a href=""><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+                    <li><a href=""><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                    <li><a href=""><i class="fa-brands fa-youtube"></i> Youtube</a></li>
+                    <li><a href=""><i class="fa-solid fa-envelope"></i> Email</a></li>
+                    <li><a href=""><i class="fa-brands fa-skype"></i> Skype</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h6>Quick Link</h6>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./dox.html">Documents</a></li>
+                    <li><a href="./donation.html">Donation</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                </ul>
+            </div>
+                
+            <div>
+                <h6>Activities</h6>
+                <ul>
+                    <li>
+                        <span>Day With Mary</span><br>
+                        <span>Everyday</span> <span>10pm</span> -- <span>12am</span>
+                    </li>
+                    <li>
+                        <span>Day with Mary</span><br>
+                        <span>Sunday</span>: <span>7:30am</span> -- <span>12am</span>
+                    </li>
+                    <li>
+                        <span>Day with Mary</span><br>
+                        <span>Sunday</span>: <span>7:30am</span> -- <span>12am</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+    
+        <div class="footer-foot">
+            <address>
+                <p><i class="fas fa-map-marker-alt"></i> St. Theresa's Catholic Church, Ajaba, Mmaku, Awgu L.G.A, Enugu</p>
+            </address>
+            <p>&copy; All right reserved</p>
+        </div>
+    </div>
+</footer>
+
+</main>
+
+<div id="navigation" class="navigation">
+    <div class="navigation--wrapper">
+        <div class="container flexRowOnly">
+            <ul class="main-menu ">
+                <li class="main-menu__item  main-menu__item--1056"><a href="../index.html" class="main-menu__link">Home</a></li>
+                <li class="main-menu__item  main-menu__item--1056"><a href="./about.html" class="main-menu__link">About</a></li>
+                <li class="main-menu__item  main-menu__item---78"><a href="./dox.html" class="main-menu__link">Doc</a></li>
+                <li class="main-menu__item  main-menu__item--2967"><a href="./prayer-section.html" class="main-menu__link">Prayer Sections</a></li>
+                <li class="main-menu__item  main-menu__item--4289"><a href="./mary-story.html" class="main-menu__link">Mary Story</a></li>
+                <li class="main-menu__item  main-menu__item--193"><a href="./rosary.html" class="main-menu__link">Rosary</a></li>
+                <li class="main-menu__item  main-menu__item--193"><a href="./teaching-of-mary.html" class="main-menu__link">Teaching of Mary</a></li>
+                <li class="main-menu__item  main-menu__item--193"><a href="./adventure.html" class="main-menu__link">Adventures</a></li>
+                <li class="main-menu__item  main-menu__item--193"><a href="./gallery.html" class="main-menu__link">Gallery</a></li>
+                <li class="main-menu__item  main-menu__item--193"><a href="./donation.html" class="main-menu__link">Donation</a></li>
+                <li class="main-menu__item  main-menu__item--193"><a href="./contact.html" class="main-menu__link">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+<script src="../vendor/swiper/swiper-bundle.min.js"></script>
+<script type="text/javascript" src="../themes/adaptable/js/bundle.js" id="script-js"></script>

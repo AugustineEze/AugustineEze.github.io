@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no" />
+    <title>Our Ladys Wailing House</title>
+    <link rel="icon" href="https://res.cloudinary.com/dbw65zshr/image/upload/v1733067659/logo_bfrjaw.jpg">
+
+    <link rel='stylesheet' id='site_styles-css' href='../themes/adaptable/css/style.css' type='text/css' media='all' />
+
+    <link rel="stylesheet" href="../vendor/swiper/swiper-bundle.min.css">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <!--I think this script is in charge of getting all the images-->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="../lib/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/549b092043.js" defer crossorigin="anonymous"></script>
+
+    <style>
+        /* h3, h4, h5{
+            color: #2a91ff;
+            font-weight: bold;
+        } */
+         figcaption h4, figcaption p{
+            font-size: small;
+            margin: 0;
+            padding: 0;
+            line-height: normal;
+         }
+        .sub-title-txt{
+            margin: 7px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .galler-grid{
+            --border-radius: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-auto-rows: 400px;
+            gap: 40px;
+            place-content: center;
+            place-items: center;
+        }
+        .galler-grid .card{
+            width: 100%;
+            height: 100%;
+            background-color: #222;
+            border: 2px solid #874ae1;
+            border-radius: var(--border-radius);
+            position: relative;
+            overflow: hidden;
+            place-items: center;
+            place-content: center;
+        }
+        .card:hover{
+            cursor: pointer;
+        }
+        .card:hover figure{
+            transform: scale(1.1);
+        }
+        .card:hover .journey-overlay{
+            opacity: 0;
+        }
+        .journey-overlay{
+            top: 0;
+            border-radius: 0;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+        .card figure{
+            margin: 0;
+            border-radius: var(--border-radius);
+            height: 100%;
+            background-color: #d0d0d06a;
+        }
+        .card figure img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+        }
+        figcaption{
+            position: absolute;
+        }
+        figcaption h4{
+            font-size: medium;
+            font-weight: bold;
+            color: #eee;
+            padding: 10px;
+        }
+        figcaption p{
+            color: #aaa;
+            padding: 0px 10px 10px 10px;
+        }
+
+
+        .image-overlay{
+            position: fixed;
+            background-color: #1f1a27bc;
+            backdrop-filter: blur(10px);
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .selected-img-con{
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 90%;
+            height: 90%;
+        }
+        .selected-image{
+            width: 80%;
+            height: 80%;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+
+        }
+        .selected-img-con button, .close-prev-btn{
+            padding: 10px 20px;
+            background-color: #874ae1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+        }
+        .selected-img-con button:hover{
+            cursor: pointer;
+            transform: scale(1.07);
+        }
+        button.close-prev-btn{
+            padding: 14px 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #e63645;
+        }
+    </style>
+
+</head>
+
+<body class="home page-template-default page page-id-185">
+<div class="image-overlay" style="display: none;">
+    
+    <div class="selected-img-con swipeArea">
+        <button class="close-prev-btn">X</button>
+        <button id="prev-btn">&lt</button>
+        <div class="selected-image" style="background-image: url(../assets/image/images/logo-original.jpg);"></div>
+        <button id="nxt-btn">&gt;</button>
+    </div>
+</div>
+<header class="header">
+    <div class="header__gradient"></div>
+    <div class="container flexRowOnly header__row">
+        <a href="" class="header__logo">
+            <img class="logo-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733067659/logo_bfrjaw.jpg" alt="logo of our lady">
+            <h1><span class="spacial-tit-char">O</span>ur 
+                <span class="spacial-tit-char">L</span>adys
+                <span class="spacial-tit-char">W</span>ailing
+                <span class="spacial-tit-char">H</span>ouse
+            </h1>
+        </a>
+
+        <div class="flex--align-center live-menu-con">
+            <a href="live.html" class="header-live-btn">
+                Live
+            </a>
+            <button id="menu-button" class="menu-toggle flex--align-center" aria-label="Mobile menu toggle">
+                <span class="menu-button"></span>
+                <span class="menu-text">menu</span>
+            </button>
+        </div>
+    </div>
+
+</header>
+
+<main>
+
+    <div class="banner-slider-container">
+        <div class='container hero-slider-p' data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper init-swiper slider-p" id="hero-slider-con">
+            <div class="swiper-wrapper hero-slider-con">
+
+                <div class="swiper-slide hero-item" style="background-image: url(https://res.cloudinary.com/dbw65zshr/image/upload/v1733065847/gallery101_dlyumj.jpg);">
+                    <div class="overlay"></div>
+                    <div class="hero-slide-text-con">
+                        <h4>
+                            Journeys of Faith with Mother Mary
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        
+
+        </div><!-- Hero Slide -->  
+    </div>
+
+    
+    <section class="section page-desc-blocks section-block-builder section--dark">
+        <div class="container container--small">
+            <h2 class="section-title section-title--purple aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">Our Adventures</h2>
+            <p class="section-description aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                Join us as we carry the statue of Mother Mary across cities, towns, and communities, spreading her message of love, hope, and faith. Our adventures are more than just journeys—they are opportunities for prayer, spiritual renewal, and connection with the Blessed Virgin Mary. Experience the grace of being part of this mission. <br> View all images in 👉 <a href="./html/gallery.html">Gallery</a>
+            </p>
+            <div class="page-desc-blocks--contain aos-init aos-animate galler-grid" data-aos="fade-up" data-aos-delay="200">
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065835/adventure13_gzpui9.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Trans-Ekulu Enugu</h4>
+                        <p>Receiving Holy Communion during A-Day-With-Mary program at St Bridget Court Trans-Ekulu Enugu Diocese on 28th October 2023</p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065833/adventure12_pm7trd.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Trans-Ekulu Enugu</h4>
+                        <p>
+                            Homily from Rev Fr Geoffrey Ugwueke in A-Day-With-Mary program at St Bridget Court Trans-Ekulu Enugu Diocese, 28th October 2023t</p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065833/adventure1_kzkggs.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Trans-Ekulu Enugu</h4>
+                        <p>
+                            Flower girls and Block Rosary brigade A-Day-With-Mary program at St Paul's parish Agbada Nenwe on 13th May
+                        </p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065839/adventure2_lbxqje.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Trans-Ekulu Enugu</h4>
+                        <p>
+                            Rosary procession in A-Day-With-Mary program at Paul Parish Agbada Nenwe on 13/5/22023
+                        </p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065844/adventure3_w1a3fn.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Trans-Ekulu Enugu</h4>
+                        <p>
+                            The matching band group of Block Rosary Brigade and Rev Fr Geoffrey Ugwueke during Rosary procession at Nenwe regional program tagged A-Day-With-Mary
+                        </p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065841/adventure4_dvcdpk.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Trans-Ekulu Enugu</h4>
+                        <p>
+                            Altar boy leading in Rosary procession at Nenwe regional A-Day-With-Mary program on 13th of May 2023
+                        </p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065843/adventure5_fgkmlv.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Trans-Ekulu Enugu</h4>
+                        <p>
+                            Rosary Procession during A-Day-With-Mary program at St Paul's parish Agbada Nenwe. Vehicle carrying the status of Our mother Mary
+                        </p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065843/adventure6_tsotdb.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Trans-Ekulu Enugu</h4>
+                        <p>
+                            Flower girls dancing in A-Day-With-Mary program at Nenwe Region
+                        </p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065844/adventure7_wad8cd.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Trans-Ekulu Enugu</h4>
+                        <p>
+                            Ave Maria choir and members of Catholic Women Organisation of St Leo De Great Parish Trans-Ekulu in A-Day-With-Mary parish at St Bridget Court Enugu Diocese
+                        </p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065845/adventure8_jrqpin.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Trans-Ekulu Enugu</h4>
+                        <p>
+                            Rev Fr Geoffrey Ugwueke praying the Rosary at Enugu Diocese in A-Day-With-Mary program
+                        </p>
+                    </figcaption>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <section class="section page-desc-blocks section-block-builder section--dark">
+        <div class="container container--small">
+            <h2 class="section-title section-title--purple aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">Our Adventure</h2>
+            <p class="section-description aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                Join us as we carry the statue of Mother Mary across cities, towns, and communities, spreading her message of love, hope, and faith. Our adventures are more than just journeys—they are opportunities for prayer, spiritual renewal, and connection with the Blessed Virgin Mary. Experience the grace of being part of this mission.<br> View all images in 👉 <a href="./html/gallery.html">Gallery</a>
+            </p>
+            <div class="page-desc-blocks--contain aos-init aos-animate galler-grid" data-aos="fade-up" data-aos-delay="200">
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065847/gallery101_dlyumj.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Image of All</h4>
+                        <p>This is the team going for an outing This is just a descriptive text</p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065848/gallery103_yge7by.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Image of All</h4>
+                        <p>This is the team going for an outing This is just a descriptive text</p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065850/gallery104_ohatep.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Image of All</h4>
+                        <p>This is the team going for an outing This is just a descriptive text</p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065850/gallery117_tneplp.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Image of All</h4>
+                        <p>This is the team going for an outing This is just a descriptive text</p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065851/gallery120_fhxboc.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Image of All</h4>
+                        <p>This is the team going for an outing This is just a descriptive text</p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065853/gallery36_ekemgw.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Image of All</h4>
+                        <p>This is the team going for an outing This is just a descriptive text</p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065856/gallery69_fbpxm9.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Image of All</h4>
+                        <p>This is the team going for an outing This is just a descriptive text</p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065857/gallery81_yvjxqe.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Image of All</h4>
+                        <p>This is the team going for an outing This is just a descriptive text</p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065859/gallery84_r62drn.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Image of All</h4>
+                        <p>This is the team going for an outing This is just a descriptive text</p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065860/gallery87_t9qmgv.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Image of All</h4>
+                        <p>This is the team going for an outing This is just a descriptive text</p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065861/gallery93_fzvgzi.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Image of All</h4>
+                        <p>This is the team going for an outing This is just a descriptive text</p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065862/gallery95_sy5xl7.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Image of All</h4>
+                        <p>This is the team going for an outing This is just a descriptive text</p>
+                    </figcaption>
+                </div>
+                <div class="card">
+                    <figure>
+                        <img class="card-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733065864/gallery98_twliph.jpg" alt="" loading="lazy">
+                    </figure>
+                    <figcaption class="journey-overlay">
+                        <h4>Image of All</h4>
+                        <p>This is the team going for an outing This is just a descriptive text</p>
+                    </figcaption>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<footer class="footer">
+    <div class="footer-wrapper">
+        <hr>
+        <div class="footer-head">
+            <a href="" class="header__logo">
+                <img class="logo-img" src="https://res.cloudinary.com/dbw65zshr/image/upload/v1733067659/logo_bfrjaw.jpg" alt="logo of our lady">
+                <h1><span class="spacial-tit-char">O</span>ur 
+                    <span class="spacial-tit-char">L</span>adys
+                    <span class="spacial-tit-char">W</span>ailing
+                    <span class="spacial-tit-char">H</span>ouse
+                </h1>
+            </a>
+        </div>
+        <hr>
+        <div class="container container--small footer-info-con">
+            <div>
+                <h6>Social</h6>
+                <ul>
+                    <li><a href=""><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+                    <li><a href=""><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                    <li><a href=""><i class="fa-brands fa-youtube"></i> Youtube</a></li>
+                    <li><a href=""><i class="fa-solid fa-envelope"></i> Email</a></li>
+                    <li><a href=""><i class="fa-brands fa-skype"></i> Skype</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h6>Quick Link</h6>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./dox.html">Documents</a></li>
+                    <li><a href="./donation.html">Donation</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                </ul>
+            </div>
+                
+            <div>
+                <h6>Activities</h6>
+                <ul>
+                    <li>
+                        <span>Day With Mary</span><br>
+                        <span>Everyday</span> <span>10pm</span> -- <span>12am</span>
+                    </li>
+                    <li>
+                        <span>Day with Mary</span><br>
+                        <span>Sunday</span>: <span>7:30am</span> -- <span>12am</span>
+                    </li>
+                    <li>
+                        <span>Day with Mary</span><br>
+                        <span>Sunday</span>: <span>7:30am</span> -- <span>12am</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+    
+        <div class="footer-foot">
+            <address>
+                <p><i class="fas fa-map-marker-alt"></i> St. Theresa's Catholic Church, Ajaba, Mmaku, Awgu L.G.A, Enugu</p>
+            </address>
+            <p>&copy; All right reserved</p>
+        </div>
+    </div>
+</footer>
+
+</main>
+
+<div id="navigation" class="navigation">
+    <div class="navigation--wrapper">
+        <div class="container flexRowOnly">
+            <ul class="main-menu ">
+                <li class="main-menu__item  main-menu__item--1056"><a href="../index.html" class="main-menu__link">Home</a></li>
+                <li class="main-menu__item  main-menu__item--1056"><a href="./about.html" class="main-menu__link">About</a></li>
+                <li class="main-menu__item  main-menu__item---78"><a href="./dox.html" class="main-menu__link">Doc</a></li>
+                <li class="main-menu__item  main-menu__item--2967"><a href="./prayer-section.html" class="main-menu__link">Prayer Sections</a></li>
+                <li class="main-menu__item  main-menu__item--4289"><a href="./mary-story.html" class="main-menu__link">Mary Story</a></li>
+                <li class="main-menu__item  main-menu__item--193"><a href="./rosary.html" class="main-menu__link">Rosary</a></li>
+                <li class="main-menu__item  main-menu__item--193"><a href="./teaching-of-mary.html" class="main-menu__link">Teaching of Mary</a></li>
+                <li class="main-menu__item  main-menu__item--193"><a href="./team.html" class="main-menu__link">Team</a></li>
+                <li class="main-menu__item  main-menu__item--193"><a href="./gallery.html" class="main-menu__link">Gallery</a></li>
+                <li class="main-menu__item  main-menu__item--193"><a href="./donation.html" class="main-menu__link">Donation</a></li>
+                <li class="main-menu__item  main-menu__item--193"><a href="./contact.html" class="main-menu__link">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+<script src="../vendor/swiper/swiper-bundle.min.js"></script>
+<script type="text/javascript" src="../themes/adaptable/js/bundle.js" id="script-js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+<script>
+    /* const swipeArea = document.querySelector('.swipeArea');
+    const hammer = new Hammer(swipeArea);
+
+    //Activate Swipe for all direction
+    hammer.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+    // Add swipe event listeners
+    hammer.on('swipeleft', () => console.log('Swiped Left'));
+    hammer.on('swiperight', () => console.log('Swiped Right'));
+    hammer.on('swipeup', () => console.log('Swiped Up'));
+    hammer.on('swipedown', () => console.log('Swiped Down')); */
+
+</script>
+
+<script>
+    //Add Swipe Event
+    const swipeArea = document.querySelector('.swipeArea');
+    const hammer = new Hammer(swipeArea);
+
+
+    const cards = document.getElementsByClassName("card");
+    const selectedImagePreviewer = document.querySelector(".selected-image");
+    const selectedImgCon = document.querySelector(".selected-img-con");
+    const imgsInCard = document.querySelectorAll(".card-img");
+    const previewerContainer = document.querySelector(".image-overlay");
+    const closePreviewBtn = document.querySelector(".close-prev-btn")
+
+    const prevBtn = document.querySelector("#prev-btn");
+    const nxtBtn = document.querySelector("#nxt-btn");
+
+    const currentSelected = {
+        img : "",
+        pos : 0
+    }
+
+    for(let i = 0; i < cards.length; i++){
+        cards[i].addEventListener("click", ()=>{
+            previewerContainer.style.display = "flex";
+            setCurrentSelected(i);
+        })
+    }
+
+    prevBtn.addEventListener("click", previousImg);
+    hammer.on('swipeleft', previousImg);
+    function previousImg() {
+        let pos = 0;
+        if(currentSelected.pos <= 0){
+            setCurrentSelected(imgsInCard.length - 1);
+        }
+        else{
+            setCurrentSelected(--currentSelected.pos)
+        }
+    }
+
+    nxtBtn.addEventListener("click", nextImg)
+    hammer.on('swiperight', nextImg);
+    function nextImg() {
+        if(currentSelected.pos >= imgsInCard.length - 1){
+            setCurrentSelected(0);
+        }
+        else{
+            setCurrentSelected(++currentSelected.pos)
+        }
+    }
+
+    previewerContainer.addEventListener("click", (e)=>{
+       if(e.target == previewerContainer || e.target == selectedImgCon){
+            closePreview();
+       }
+    })
+    closePreviewBtn.addEventListener("click", closePreview)
+    function closePreview(){
+        previewerContainer.style.display = "none";
+    }
+
+    function setCurrentSelected(i){
+        currentSelected.pos = i;
+        currentSelected.img = imgsInCard[i];
+        selectedImagePreviewer.style.backgroundImage = `url(${currentSelected.img.getAttribute("src")})`;
+    }
+</script>

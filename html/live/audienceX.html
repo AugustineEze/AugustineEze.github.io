@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+    <title>Our Ladys Wailing House Live</title>
+    <link rel="stylesheet" href="../../css/live/audience.css">
+
+    <style>
+        /*All styles for dou prime host screen set up*/
+        /* Single primary host */
+        .dph .host-2-con{
+            position: absolute;
+            background-color: rgba(0, 0, 255, 0);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex;
+            justify-content: right;
+            align-items: flex-end;
+        }
+        .dph .host-2{
+            background-color: burlywood;
+            width: 25vw;
+            height: 25vw;
+            border: 3px solid black;
+            border-radius: 50%;
+        }
+        .tph .host-3-con{
+            position: absolute;
+            background-color: rgba(0, 0, 255, 0);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex;
+            justify-content: right;
+            align-items: flex-end;
+        }
+        .tph .host-3{
+            background-color: burlywood;
+            width: 25vw;
+            height: 25vw;
+            border: 3px solid black;
+            border-radius: 50%;
+        }
+        .dph .host-2-con.top-top, .tph .host-3-con.top-top{
+            justify-content: left;
+            align-items: flex-start;
+        }
+        .dph .host-2-con.top-cent, .tph .host-3-con.top-cent{
+            justify-content: left;
+            align-items: center;
+        }
+        .dph .host-2-con.top-bot, .tph .host-3-con.top-bot{
+            justify-content: left;
+            align-items: flex-end;
+        }
+        .dph .host-2-con.cent-top, .tph .host-3-con.cent-top{
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .dph .host-2-con.cent-cent, .tph .host-3-con.cent-cent{
+            justify-content: center;
+            align-items: center;
+        }
+        .dph .host-2-con.cent-bot, .tph .host-3-con.cent-bot{
+            justify-content: center;
+            align-items: flex-end;
+        }
+        .dph .host-2-con.bot-top, .tph .host-3-con.bot-top{
+            justify-content: right;
+            align-items: flex-start;
+        }
+        .dph .host-2-con.bot-cent, .tph .host-3-con.bot-cent{
+            justify-content: right;
+            align-items: center;
+        }
+        .dph .host-2-con.bot-bot, .tph .host-3-con.bot-bot{
+            justify-content: right;
+            align-items: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="bar-con">
+            <button class="toggle-bar">B</button>
+            <div class="bar"></div>
+        </div>
+        <div class="screen-panel-p">
+            <div class="screens">
+                <!-- <div class="hosts-screen single-base-host dou-base-host trio-base-host"> -->
+                <div class="hosts-screen single-base-host">
+                    <div class="host-1-con"><div class="host-1"></div></div>
+
+                    <div id="host-2-con" class="host-2-con"><div class="host-2"></div></div>
+
+                    <div id="host-3-con" class="host-3-con cent-cent"><div class="host-3"></div></div>
+                </div>
+                <div class="chart-screen"></div>
+            </div>
+            <div class="ctrl-con">
+                <button class="toggle-ctrl-panel">C</button>
+                <div class="ctrl-panel">
+                    <button id="dph-1">DPH-1</button>
+                    <button id="dph-2">DPH-2</button>
+                    <button id="dph-3">DPH-3</button>
+                    <button id="dph-4">DPH-4</button>
+                    <button id="dph-5">DPH-5</button>
+                    <button id="dph-6">DPH-6</button>
+                    <button id="dph-7">DPH-7</button>
+                    <button id="dph-8">DPH-8</button>
+                    <button id="dph-9">DPH-9</button>
+
+                    <button id="tph-1">TPH-1</button>
+                    <button id="tph-2">TPH-2</button>
+                    <button id="tph-3">TPH-3</button>
+                    <button id="tph-4">TPH-4</button>
+                    <button id="tph-5">TPH-5</button>
+                    <button id="tph-6">TPH-6</button>
+                    <button id="tph-7">TPH-7</button>
+                    <button id="tph-8">TPH-8</button>
+                    <button id="tph-9">TPH-9</button>
+
+                    <button id="sin-1-prim-host">sin1PH</button>
+                    <button id="dou-1-prim-host">dou1PH</button>
+                    <button id="sin-2-prim-host">sin1PH</button>
+
+
+                    <button id="sec-l-btn">DL</button>
+                    <button id="sec-m-btn">DM</button>
+                    <button id="sec-s-btn">DS</button>
+                    <button id="third-l-btn">TL</button>
+                    <button id="third-m-btn">TM</button>
+                    <button id="third-s-btn">TS</button>
+                </div>
+                <button class="toggle-chart-screen">T</button>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <script>
+        const toggleCtrlPanel = document.querySelector(".toggle-ctrl-panel");
+        const toggleChart = document.querySelector(".toggle-chart-screen");
+        const toggleBar = document.querySelector(".toggle-bar");
+        const container = document.querySelector(".container");
+        const hostsScreen = document.querySelector(".hosts-screen");
+
+        
+
+        //Getting the saved or default settings
+        screenSetStorage = "screen-setting"
+        let screenSet = JSON.parse(localStorage.getItem(screenSetStorage)) || {
+            ctrlPanel: true,
+            chartScreen: true,
+            bar: true,
+            fullScreen: false
+        }
+
+        //Activate the saved settings
+        activateScreenSet();
+
+        //Activate the saved settings
+        function activateScreenSet(){
+            screenSet.ctrlPanel?container.classList.remove("disable-panel")
+                :container.classList.add("disable-panel");
+            screenSet.chartScreen?container.classList.remove("disable-chart")
+                :container.classList.add("disable-chart");
+            screenSet.bar?container.classList.remove("disable-bar")
+                :container.classList.add("disable-bar");
+        }
+
+        resizeContainer();
+        window.addEventListener("resize", resizeContainer)
+
+        function resizeContainer(){
+            container.style.width = window.innerWidth + "px";
+            container.style.height = window.innerHeight + "px";
+        }
+    </script>
+
+    <!-- Host view settings -->
+    <script>
+        //Dou prim Host
+        host2Con = document.querySelector("#host-2-con")
+        host3Con = document.querySelector("#host-3-con")
+
+
+        document.querySelector("#dph-1").addEventListener("click", ()=>{
+            setHost2PrimPos('top-top')
+        })
+        document.querySelector("#dph-2").addEventListener("click", ()=>{
+            setHost2PrimPos('top-cent')
+        })
+        document.querySelector("#dph-3").addEventListener("click", ()=>{
+            setHost2PrimPos('top-bot')
+        })
+        document.querySelector("#dph-4").addEventListener("click", ()=>{
+            setHost2PrimPos('cent-top')
+        })
+        document.querySelector("#dph-5").addEventListener("click", ()=>{
+            setHost2PrimPos('cent-cent')
+        })
+        document.querySelector("#dph-6").addEventListener("click", ()=>{
+            setHost2PrimPos('cent-bot')
+        })
+        document.querySelector("#dph-7").addEventListener("click", ()=>{
+            setHost2PrimPos('bot-top')
+        })
+        document.querySelector("#dph-8").addEventListener("click", ()=>{
+            setHost2PrimPos('bot-cent')
+        })
+        document.querySelector("#dph-9").addEventListener("click", ()=>{
+            setHost2PrimPos('bot-bot')
+        })
+
+        function setHost2PrimPos(activeClass){
+            /* container.classList.remove("tph"); */
+            container.classList.add("dph")
+
+            host2Con.classList.remove('top-top', 'top-cent', 'top-bot', 'cent-top', 'cent-cent', 'cent-bot', 'bot-top', 'bot-cent', 'bot-bot');
+            host2Con.classList.add(activeClass);
+        }
+
+
+        document.querySelector("#tph-1").addEventListener("click", ()=>{
+            setHost3PrimPos('top-top')
+        })
+        document.querySelector("#tph-2").addEventListener("click", ()=>{
+            setHost3PrimPos('top-cent')
+        })
+        document.querySelector("#tph-3").addEventListener("click", ()=>{
+            setHost3PrimPos('top-bot')
+        })
+        document.querySelector("#tph-4").addEventListener("click", ()=>{
+            setHost3PrimPos('cent-top')
+        })
+        document.querySelector("#tph-5").addEventListener("click", ()=>{
+            setHost3PrimPos('cent-cent')
+        })
+        document.querySelector("#tph-6").addEventListener("click", ()=>{
+            setHost3PrimPos('cent-bot')
+        })
+        document.querySelector("#tph-7").addEventListener("click", ()=>{
+            setHost3PrimPos('bot-top')
+        })
+        document.querySelector("#tph-8").addEventListener("click", ()=>{
+            setHost3PrimPos('bot-cent')
+        })
+        document.querySelector("#tph-9").addEventListener("click", ()=>{
+            setHost3PrimPos('bot-bot')
+        })
+        function setHost3PrimPos(activeClass){
+            /* container.classList.remove("dph") */
+            container.classList.add("tph")
+
+            host3Con.classList.remove('top-top', 'top-cent', 'top-bot', 'cent-top', 'cent-cent', 'cent-bot', 'bot-top', 'bot-cent', 'bot-bot');
+            host3Con.classList.add(activeClass);
+        }
+        
+        
+        document.querySelector("#sin-1-prim-host").addEventListener("click", ()=>{
+            container.classList.add("dph");
+            hostsScreen.classList.add("single-base-host");
+
+            container.classList.remove("tph");
+            hostsScreen.classList.remove("dou-base-host")
+        });
+        document.querySelector("#dou-1-prim-host").addEventListener("click", ()=>{
+            container.classList.add("tph");
+            hostsScreen.classList.add("dou-base-host");
+
+            container.classList.remove("dph")
+            hostsScreen.classList.remove("single-base-host");
+        });
+        document.querySelector("#sin-2-prim-host").addEventListener("click", ()=>{
+            container.classList.add("dph");
+            container.classList.add("tph");
+            hostsScreen.classList.add("single-base-host");
+
+            hostsScreen.classList.remove("dou-base-host")
+        })
+    </script>
+
+    <script>
+        const host2 = document.querySelector(".host-2");
+        const host3 = document.querySelector(".host-3");
+        document.querySelector("#sec-l-btn").addEventListener("click", ()=>{
+            let smallerSide = Math.min(hostsScreen.clientWidth, hostsScreen.clientHeight);
+            
+            host2.style.width = `${smallerSide * 0.68}px`;
+            host2.style.height = `${smallerSide * 0.68}px`;
+        })
+        document.querySelector("#sec-m-btn").addEventListener("click", ()=>{
+            let smallerSide = Math.min(hostsScreen.clientWidth, hostsScreen.clientHeight);
+            
+            host2.style.width = `${smallerSide * 0.48}px`;
+            host2.style.height = `${smallerSide * 0.48}px`;
+        })
+        document.querySelector("#sec-s-btn").addEventListener("click", ()=>{
+            let smallerSide = Math.min(hostsScreen.clientWidth, hostsScreen.clientHeight);
+            
+            host2.style.width = `${smallerSide * 0.35}px`;
+            host2.style.height = `${smallerSide * 0.35}px`;
+        })
+        document.querySelector("#third-l-btn").addEventListener("click", ()=>{
+            let smallerSide = Math.min(hostsScreen.clientWidth, hostsScreen.clientHeight);
+            
+            host3.style.width = `${smallerSide * 0.68}px`;
+            host3.style.height = `${smallerSide * 0.68}px`;
+        })
+        document.querySelector("#third-m-btn").addEventListener("click", ()=>{
+            let smallerSide = Math.min(hostsScreen.clientWidth, hostsScreen.clientHeight);
+            
+            host3.style.width = `${smallerSide * 0.48}px`;
+            host3.style.height = `${smallerSide * 0.48}px`;
+        })
+        document.querySelector("#third-s-btn").addEventListener("click", ()=>{
+            let smallerSide = Math.min(hostsScreen.clientWidth, hostsScreen.clientHeight);
+            
+            host3.style.width = `${smallerSide * 0.35}px`;
+            host3.style.height = `${smallerSide * 0.35}px`;
+        })
+
+        function setSizePrimHost(){
+            let size = Math.min(hostsScreen.clientWidth, hostsScreen.clientHeight);
+
+            console.log();
+        }
+    </script>
+
+    <!-- Check if the host screen is tall or wide-->
+    <script>
+        
+        identifyHostScreenSize();
+        window.addEventListener("resize", ()=>{
+            identifyHostScreenSize();
+        })
+
+        function identifyHostScreenSize(){
+            //Check how tall the screen is
+            if(hostsScreen.clientHeight / hostsScreen.clientWidth >= 1.15){
+                hostsScreen.classList.add("tall");
+                hostsScreen.classList.add("x-tall");
+            }
+            else if(hostsScreen.clientHeight / hostsScreen.clientWidth >= 1.12){
+                hostsScreen.classList.add("tall");
+                hostsScreen.classList.remove("x-tall");
+            }
+            else{
+                hostsScreen.classList.remove("tall", "x-tall");
+            }
+
+            //Check how wide the screen is
+            if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 3){
+                hostsScreen.classList.add("wide");
+                hostsScreen.classList.add("x-wide");
+                hostsScreen.classList.add("xx-wide");
+            }
+            else if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 2){
+                hostsScreen.classList.add("wide");
+                hostsScreen.classList.add("x-wide");
+                hostsScreen.classList.remove("xx-wide");
+            }
+            else if(hostsScreen.clientWidth / hostsScreen.clientHeight >= 1.2){
+                hostsScreen.classList.add("wide");
+                hostsScreen.classList.remove("x-wide", "xx-wide");
+            }
+            else{
+                hostsScreen.classList.remove("wide", "x-wide", "xx-wide")
+            }
+        }
+    </script>
+
+    <!-- Toggle Toggle Control Panel -->
+    <script>
+        
+
+        toggleCtrlPanel.addEventListener("click", ()=>{
+            updateUsersScreenSet("disable-panel", "ctrlPanel")
+        })
+        toggleChart.addEventListener("click", ()=>{
+            updateUsersScreenSet("disable-chart", "chartScreen")
+        })
+        toggleBar.addEventListener("click", ()=>{
+            updateUsersScreenSet("disable-bar", "bar")
+        })
+
+        function updateUsersScreenSet(classToggle, setToggle){
+            container.classList.toggle(classToggle);
+
+            container.classList.contains(classToggle)?
+                screenSet[setToggle] = false: screenSet[setToggle] = true;
+            saveScreenSetting();
+            identifyHostScreenSize();
+        }
+
+        
+
+        function saveScreenSetting(){
+            localStorage.setItem(screenSetStorage, JSON.stringify(screenSet));
+        }
+    </script>
+</body>
+</html>
